@@ -5,6 +5,7 @@
 #include "PlayerCar.h"
 #include "UIText.h"
 #include "ApplicationManager.h"
+#include "BGMovement.h"
 #include <iostream>
 
 PhysicsManager* PhysicsManager::sharedInstance = NULL;
@@ -69,6 +70,7 @@ void PhysicsManager::clearAll()
 
 void PhysicsManager::perform()
 {
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	//cout << sharedInstance->playerObject[0]->getName() << endl;
 
 	for (int x = 0; x < sharedInstance->enemyCarObjects.size(); x++)
@@ -80,9 +82,20 @@ void PhysicsManager::perform()
 			DeathPopUp* deathPopUp = new DeathPopUp("deathPopUp");
 			GameObjectManager::getInstance()->addObject(deathPopUp);
 			*/
-			ApplicationManager::getInstance()->pauseApplication();
+			bgMove->SPEED_MULTIPLIER = 500.0f;
+
+
 			//cout << "Collide!" << endl;
 		}
+	}
+
+
+	this->ticks += this->deltaTime.asSeconds();
+
+	if (this->ticks >= 1.0f) {
+		this->ticks = 0.0f;
+		bgMove->SPEED_MULTIPLIER = 1000.0f;
+
 	}
 	enemyCarObjects.clear();
 }

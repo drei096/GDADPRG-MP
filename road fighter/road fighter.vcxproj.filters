@@ -58,6 +58,15 @@
     <Filter Include="Header Files\Physics">
       <UniqueIdentifier>{fc94bc56-67e3-4fdf-917d-01cbad1764da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LevelUI">
+      <UniqueIdentifier>{418cb934-1917-47a5-a330-3c398d917c1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{af950168-a72e-4874-83fe-4ac7d05bb484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LevelUI">
+      <UniqueIdentifier>{911c1a53-113d-4c55-b57f-e03d67ac534e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -162,6 +171,15 @@
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CarProgressMovement.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressCar.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -176,16 +194,7 @@
     <ClInclude Include="ObjectComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerInputController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
@@ -265,6 +274,24 @@
     </ClInclude>
     <ClInclude Include="CollisionListener.h">
       <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBar.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCar.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInputController.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMovement.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CarProgressMovement.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressCar.h">
+      <Filter>Header Files\LevelUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

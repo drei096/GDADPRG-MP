@@ -20,6 +20,15 @@ MainMenu::~MainMenu()
 
 void MainMenu::initialize()
 {
+	Sprite* sprite2 = new Sprite();
+	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));
+	Vector2u textureSize2 = sprite2->getTexture()->getSize();
+	sprite2->setOrigin(textureSize2.x / 2, textureSize2.y / 2);
+
+	Renderer* renderer2 = new Renderer("popUp");
+	renderer2->assignDrawable(sprite2);
+	this->attachComponent(renderer2);
+
 	Sprite* sprite = new Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("menuLogo"));
 	Vector2u textureSize = sprite->getTexture()->getSize();

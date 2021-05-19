@@ -26,6 +26,7 @@ private:
 	PhysicsManager(PhysicsManager const&) : ObjectComponent(name, Script) {};             // copy constructor is private
 	PhysicsManager& operator=(PhysicsManager const&) {};  // assignment operator is private
 	static PhysicsManager* sharedInstance;
+	float ticks;
 
 	CollisionList playerObject;
 	CollisionList enemyCarObjects;

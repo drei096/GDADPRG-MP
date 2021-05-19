@@ -19,7 +19,7 @@ void EnemyCar::initialize()
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("enemyCar"));
 	sf::Vector2u textureSize = sprite->getTexture()->getSize();
 	sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
-	sprite->setScale(0.7, 0.7);
+	sprite->setScale(0.5, 0.5);
 
 	this->setPosition(Game::WINDOW_WIDTH / 2, -30);
 	//randomize

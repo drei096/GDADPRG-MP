@@ -8,6 +8,7 @@
 #include "EnemyCarClone.h"
 #include "EmptyGameObject.h"
 #include "PhysicsManager.h"
+#include "ProgressBar.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -27,8 +28,11 @@ void Level1PlayScene::onLoadResources()
 
 void Level1PlayScene::onLoadObjects()
 {
-	BG* bg = new BG("BgTry");
+	BG* bg = new BG("BG", 30000.0f);
 	this->registerObject(bg);
+
+	ProgressBar* progress = new ProgressBar("progressBar");
+	this->registerObject(progress);
 
 	PlayerCar* player = new PlayerCar("player");
 	this->registerObject(player);

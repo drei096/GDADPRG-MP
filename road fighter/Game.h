@@ -12,7 +12,7 @@ class Game
 {
 public:
 	static const int WINDOW_HEIGHT = 600;
-	static const int WINDOW_WIDTH = 500;
+	static const int WINDOW_WIDTH = 700;
 	const Time timePerFrame = seconds(1.0f / 60.0f);
 
 public:

@@ -6,7 +6,9 @@
 #include "Renderer.h"
 #include "BGMovement.h"
 
-BG::BG(std::string name) : GameObject(name) {}
+BG::BG(std::string name, float _MAX) : GameObject(name) {
+	this->MAX_DISTANCE = _MAX;
+}
 
 void BG::initialize()
 {
@@ -19,10 +21,10 @@ void BG::initialize()
 	//make BG height x k to emulate repeating BG.
 	
 	
-	sprite->setTextureRect(sf::IntRect(0, 0, Game::WINDOW_WIDTH, textureSize.y));
-	getTransformable()->setPosition(0, -Game::WINDOW_HEIGHT * 8);
+	sprite->setTextureRect(sf::IntRect(0, 0, textureSize.x, textureSize.y));
+	getTransformable()->setPosition(100, -Game::WINDOW_HEIGHT * 8);
 	
-	BGMovement* movement = new BGMovement("BG_Movement");
+	BGMovement* movement = new BGMovement("BG_Movement", this->MAX_DISTANCE);
 	this->attachComponent(movement);
 	
 

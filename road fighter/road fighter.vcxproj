@@ -23,6 +23,7 @@
     <ClCompile Include="BG.cpp" />
     <ClCompile Include="BGMovement.cpp" />
     <ClCompile Include="ButtonListener.cpp" />
+    <ClCompile Include="CarProgressMovement.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EmptyGameObject.cpp" />
     <ClCompile Include="EnemyBehavior.cpp" />
@@ -46,6 +47,8 @@
     <ClCompile Include="PlayerCar.cpp" />
     <ClCompile Include="PlayerInputController.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
+    <ClCompile Include="ProgressCar.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -59,6 +62,7 @@
     <ClInclude Include="BG.h" />
     <ClInclude Include="BGMovement.h" />
     <ClInclude Include="ButtonListener.h" />
+    <ClInclude Include="CarProgressMovement.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionListener.h" />
     <ClInclude Include="EmptyGameObject.h" />
@@ -82,6 +86,8 @@
     <ClInclude Include="PlayerCar.h" />
     <ClInclude Include="PlayerInputController.h" />
     <ClInclude Include="PlayerMovement.h" />
+    <ClInclude Include="ProgressBar.h" />
+    <ClInclude Include="ProgressCar.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
