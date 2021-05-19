@@ -4,6 +4,10 @@
 #include "SceneManager.h"
 #include "UIText.h"
 #include "Renderer.h"
+#include "BG.h"
+#include "EnemyCarClone.h"
+#include "EmptyGameObject.h"
+#include "PhysicsManager.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -23,16 +27,32 @@ void Level1PlayScene::onLoadResources()
 
 void Level1PlayScene::onLoadObjects()
 {
+	BG* bg = new BG("BgTry");
+	this->registerObject(bg);
+
 	PlayerCar* player = new PlayerCar("player");
 	this->registerObject(player);
 	//GameObjectManager::getInstance()->addObject(player);
+
+
+	srand(time(NULL));
+	EmptyGameObject* enemiesManager = new EmptyGameObject("EnemiesManager");
+	EnemyCarClone* swarmHandler = new EnemyCarClone(2, "SwarmHandler");
+	enemiesManager->attachComponent(swarmHandler);
+	this->registerObject(enemiesManager);
+
+
+	PhysicsManager::initialize("PlayerP6", player);
+	PhysicsManager::initialize("EnemyCarP6", enemiesManager);
 }
 
 void Level1PlayScene::onUnloadObjects()
 {
+	PhysicsManager::getInstance()->clearAll();
 	Scene::onUnloadObjects();
 }
 
 void Level1PlayScene::onUnloadResources()
 {
+
 }

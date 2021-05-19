@@ -20,11 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="BG.cpp" />
+    <ClCompile Include="BGMovement.cpp" />
     <ClCompile Include="ButtonListener.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="EmptyGameObject.cpp" />
+    <ClCompile Include="EnemyBehavior.cpp" />
+    <ClCompile Include="EnemyCar.cpp" />
+    <ClCompile Include="EnemyCarClone.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="GameObjectPool.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level1PlayScene.cpp" />
@@ -32,6 +40,9 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="ObjectComponent.cpp" />
+    <ClCompile Include="ObjectPoolable.cpp" />
+    <ClCompile Include="ObjectPoolHolder.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlayerCar.cpp" />
     <ClCompile Include="PlayerInputController.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
@@ -45,17 +56,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationManager.h" />
+    <ClInclude Include="BG.h" />
+    <ClInclude Include="BGMovement.h" />
     <ClInclude Include="ButtonListener.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionListener.h" />
+    <ClInclude Include="EmptyGameObject.h" />
+    <ClInclude Include="EnemyBehavior.h" />
+    <ClInclude Include="EnemyCar.h" />
+    <ClInclude Include="EnemyCarClone.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="GameObjectPool.h" />
     <ClInclude Include="InputController.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level1PlayScene.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="ObjectComponent.h" />
+    <ClInclude Include="ObjectPoolable.h" />
+    <ClInclude Include="ObjectPoolHolder.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PlayerCar.h" />
     <ClInclude Include="PlayerInputController.h" />
     <ClInclude Include="PlayerMovement.h" />

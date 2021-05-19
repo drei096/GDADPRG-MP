@@ -15,7 +15,12 @@ TextureManager* TextureManager::getInstance()
 
 void TextureManager::loadAllTextures()
 {
+    loadTexture("bg1", "Media/Textures/bg1.png");
+    sf::Texture* bgTex;
+    bgTex = getTextureByKey("bg1");
+    bgTex->setRepeated(true);
     loadTexture("player", "Media/Textures/p_car.png");
+    loadTexture("enemyCar", "Media/Textures/GalardB.png");
     loadTexture("menuLogo", "Media/Textures/logo.jpeg");
     loadTexture("buttonSpriteSheet", "Media/Textures/arcade_buttons.png");
 }

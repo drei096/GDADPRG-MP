@@ -35,7 +35,15 @@ public:
 	vector <ObjectComponent*> getComponentsOfTypeRecursive(ObjectComponent::componentType type);
 
 	Transformable* getTransformable();
+
+	virtual sf::FloatRect getLocalBounds();
+	virtual sf::FloatRect getGlobalBounds();
+	sf::Transform getGlobalTransform();
+
 	GameObject* getParent();
+
+	void setEnabled(bool flag);
+	bool isEnabled();
 
 protected:
 	Transformable transformable;
@@ -46,7 +54,7 @@ protected:
 
 private:
 	vector <ObjectComponent*> getComponentsRecursiveProper(GameObject* object, ObjectComponent::componentType type, vector<ObjectComponent*> foundList);
-
+	bool enabled = true;
 
 };
 

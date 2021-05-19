@@ -203,6 +203,30 @@ Transformable* GameObject::getTransformable()
 	return &this->transformable;
 }
 
+sf::FloatRect GameObject::getLocalBounds() {
+	throw "getLocalBounds() not yet implemented!";
+}
+
+sf::FloatRect GameObject::getGlobalBounds() {
+	throw "gtLocalBounds() not implemented!";
+}
+
+sf::Transform GameObject::getGlobalTransform() {
+	GameObject* parentObj = this;
+	vector<GameObject*> parentList;
+	while (parentObj != NULL) {
+		parentList.push_back(parentObj);
+		parentObj = parentObj->getParent();
+	}
+
+	sf::Transform transform = sf::Transform::Identity;
+	int startIdx = parentList.size() - 1;
+	for (int i = startIdx; i >= 0; i--) {
+		transform = transform * parentList[i]->getTransformable()->getTransform();
+	}
+	return transform;
+}
+
 GameObject* GameObject::getParent()
 {
 	return this->parent;
@@ -226,4 +250,14 @@ vector<ObjectComponent*> GameObject::getComponentsRecursiveProper(GameObject* ob
 	}
 
 	return foundList;
+}
+
+void GameObject::setEnabled(bool flag)
+{
+	this->enabled = flag;
+}
+
+bool GameObject::isEnabled()
+{
+	return this->enabled;
 }

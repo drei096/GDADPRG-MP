@@ -1,6 +1,7 @@
 #include "PlayerMovement.h"
 #include "GameObject.h"
 #include "PlayerInputController.h"
+#include "Game.h"
 #include <iostream>
 
 PlayerMovement::PlayerMovement(string name) : ObjectComponent(name, Script)
@@ -43,16 +44,26 @@ void PlayerMovement::perform()
 	else if (inputController->isRight()) 
 	{
 		//this->resetSpeedMultiplier();
+		if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 65)) {
+			playerTransformable->setPosition(playerTransformable->getPosition());
+		}
 
-		offset.x += this->SPEED_MULTIPLIER;
-		playerTransformable->move(offset * deltaTime.asSeconds());
+		else {
+			offset.x += this->SPEED_MULTIPLIER;
+			playerTransformable->move(offset * deltaTime.asSeconds());
+		}
 	}
 	else if (inputController->isLeft()) 
 	{
 		//this->resetSpeedMultiplier();
+		if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 65)) {
+			playerTransformable->setPosition(playerTransformable->getPosition());
+		}
 
-		offset.x -= this->SPEED_MULTIPLIER;
-		playerTransformable->move(offset * deltaTime.asSeconds());
+		else {
+			offset.x -= this->SPEED_MULTIPLIER;
+			playerTransformable->move(offset * deltaTime.asSeconds());
+		}
 	}
 }
 

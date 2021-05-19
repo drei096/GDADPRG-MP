@@ -66,10 +66,7 @@ void MainMenu::initialize()
 
 void MainMenu::onButtonClick(UIButton* button)
 {
-	if (button->getName() == "button_1")
-	{
-		SceneManager::getInstance()->loadScene(SceneManager::LEVEL1_SCENE_NAME);
-	}
+	
 
 	/*
 	//std::cout << button->getName();
@@ -88,7 +85,10 @@ void MainMenu::onButtonClick(UIButton* button)
 
 void MainMenu::onButtonReleased(UIButton* button)
 {
-
+	if (button->getName() == "button_1")
+	{
+		SceneManager::getInstance()->loadScene(SceneManager::LEVEL1_SCENE_NAME);
+	}
 	//std::cout << button->getName();
 }
 
