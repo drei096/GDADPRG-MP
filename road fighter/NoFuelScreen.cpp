@@ -62,11 +62,11 @@ void NoFuelScreen::initialize()
 
 void NoFuelScreen::onButtonClick(UIButton* button)
 {
-	SceneManager::getInstance()->unloadScene();
-	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
-	ApplicationManager::getInstance()->resumeApplication();
 }
 
 void NoFuelScreen::onButtonReleased(UIButton* button)
 {
+	SceneManager::getInstance()->unloadScene();
+	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+	ApplicationManager::getInstance()->resumeApplication();
 }

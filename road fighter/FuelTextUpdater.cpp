@@ -37,19 +37,16 @@ void FuelTextUpdater::perform()
 	//cout << collisionCount << endl;
 	//cout << carProgress->laps << endl;
 
-	if (inputController->isSecondGear() || inputController->isFirstGear())
-	{
-		this->ticks += this->deltaTime.asSeconds() * 1.5;
+	this->ticks += this->deltaTime.asSeconds() * 1.5;
 
-		levelOverlay->fuel = 100 - ((int)this->ticks * 0.5); //slowed down the decrease rate of fuel
+	levelOverlay->fuel = 100 - this->ticks; //slowed down the decrease rate of fuel
 
-		fuelScore->setText("FUEL\n\t\t" + (to_string)(levelOverlay->fuel));
+	fuelScore->setText("FUEL\n\t\t" + (to_string)(levelOverlay->fuel));
 
-		if (levelOverlay->fuel == 0) {
-			ApplicationManager::getInstance()->pauseApplication();
-			NoFuelScreen* noFuelScreen = new NoFuelScreen("noFuelScreen");
-			GameObjectManager::getInstance()->addObject(noFuelScreen);
-		}
+	if (levelOverlay->fuel == 0) {
+		ApplicationManager::getInstance()->pauseApplication();
+		NoFuelScreen* noFuelScreen = new NoFuelScreen("noFuelScreen");
+		GameObjectManager::getInstance()->addObject(noFuelScreen);
 	}
 
 	
