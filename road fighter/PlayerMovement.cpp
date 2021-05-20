@@ -1,6 +1,13 @@
 #include "PlayerMovement.h"
 #include "GameObject.h"
 #include "PlayerInputController.h"
+#include "BGMovement.h"
+#include "EmptyGameObject.h"
+#include "GameObjectManager.h"
+#include "GameObjectPool.h"
+#include "ObjectPoolHolder.h"
+#include "ObjectPoolable.h"
+#include "EnemyCar.h"
 #include "Game.h"
 #include <iostream>
 
@@ -17,6 +24,7 @@ void PlayerMovement::perform()
 {
 	PlayerInputController* inputController = (PlayerInputController*)this->getOwner()->getComponentsOfType(componentType::Input)[0];
 	Transformable* playerTransformable = this->getOwner()->getTransformable();
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
 	if (playerTransformable == NULL || inputController == NULL) 
 	{
@@ -28,23 +36,50 @@ void PlayerMovement::perform()
 
 	if (inputController->isSecondGear()) 
 	{
-		//cout << offset.x << " " << offset.y << endl;
-		offset.y -= this->SPEED_MULTIPLIER;
-		playerTransformable->move(offset * deltaTime.asSeconds());
-	}
-	else if (inputController->isFirstGear()) 
-	{
-		//this->resetSpeedMultiplier();
+		bgMove->SPEED_MULTIPLIER += this->SPEED_MULTIPLIER * deltaTime.asSeconds();
 
+		if (bgMove->SPEED_MULTIPLIER >= 1000.0f) {
+			bgMove->SPEED_MULTIPLIER = 1000.0f;
+		}
+		if (bgMove->SPEED_MULTIPLIER <= 0.0f) {
+			bgMove->SPEED_MULTIPLIER = 0.0f;
+		}
 		//cout << offset.x << " " << offset.y << endl;
-		offset.y += this->SPEED_MULTIPLIER;
-		playerTransformable->move(offset * deltaTime.asSeconds());
+		//offset.y -= this->SPEED_MULTIPLIER;
+		//playerTransformable->move(offset * deltaTime.asSeconds());
+
+		if (inputController->isRight())
+		{
+			//this->resetSpeedMultiplier();
+			if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
+				playerTransformable->setPosition(playerTransformable->getPosition());
+			}
+
+			else {
+				offset.x += this->SPEED_MULTIPLIER;
+				playerTransformable->move(offset * deltaTime.asSeconds());
+			}
+		}
+
+		else if (inputController->isLeft())
+		{
+			//this->resetSpeedMultiplier();
+			if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
+				playerTransformable->setPosition(playerTransformable->getPosition());
+			}
+
+			else {
+				offset.x -= this->SPEED_MULTIPLIER;
+				playerTransformable->move(offset * deltaTime.asSeconds());
+			}
+		}
 	}
 
+	/*
 	else if (inputController->isRight()) 
 	{
 		//this->resetSpeedMultiplier();
-		if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 65)) {
+		if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
 			playerTransformable->setPosition(playerTransformable->getPosition());
 		}
 
@@ -56,13 +91,59 @@ void PlayerMovement::perform()
 	else if (inputController->isLeft()) 
 	{
 		//this->resetSpeedMultiplier();
-		if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 65)) {
+		if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
 			playerTransformable->setPosition(playerTransformable->getPosition());
 		}
 
 		else {
 			offset.x -= this->SPEED_MULTIPLIER;
 			playerTransformable->move(offset * deltaTime.asSeconds());
+		}
+	}
+	*/
+
+	else if (!inputController->isSecondGear())
+	{
+
+		bgMove->SPEED_MULTIPLIER -= this->SPEED_MULTIPLIER * deltaTime.asSeconds() * 2;
+
+		if (bgMove->SPEED_MULTIPLIER >= 1000.0f) {
+			bgMove->SPEED_MULTIPLIER = 1000.0f;
+		}
+		if (bgMove->SPEED_MULTIPLIER <= 0.0f) {
+			bgMove->SPEED_MULTIPLIER = 0.0f;
+		}
+
+
+		cout << bgMove->SPEED_MULTIPLIER << endl;
+		//cout << offset.x << " " << offset.y << endl;
+		//offset.y -= this->SPEED_MULTIPLIER;
+		//playerTransformable->move(offset * deltaTime.asSeconds());
+
+		if (inputController->isRight())
+		{
+			//this->resetSpeedMultiplier();
+			if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
+				playerTransformable->setPosition(playerTransformable->getPosition());
+			}
+
+			else {
+				offset.x += this->SPEED_MULTIPLIER;
+				playerTransformable->move(offset * deltaTime.asSeconds());
+			}
+		}
+
+		else if (inputController->isLeft())
+		{
+			//this->resetSpeedMultiplier();
+			if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
+				playerTransformable->setPosition(playerTransformable->getPosition());
+			}
+
+			else {
+				offset.x -= this->SPEED_MULTIPLIER;
+				playerTransformable->move(offset * deltaTime.asSeconds());
+			}
 		}
 	}
 }

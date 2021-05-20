@@ -7,9 +7,6 @@ public:
 	~CarProgressMovement();
 
 	void perform();
-
-	
-private:
 	int laps = 1;
 	
 

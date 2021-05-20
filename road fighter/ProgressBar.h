@@ -10,5 +10,6 @@ public:
 	void initialize();
 	void onButtonClick(UIButton* button);
 	void onButtonReleased(UIButton* button);
+	int laps = 1;
 };
 

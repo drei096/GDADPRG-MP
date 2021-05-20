@@ -180,6 +180,15 @@
     <ClCompile Include="ProgressCar.cpp">
       <Filter>Source Files\LevelUI</Filter>
     </ClCompile>
+    <ClCompile Include="LevelOverlay.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTextUpdater.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="FuelTextUpdater.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -291,6 +300,15 @@
       <Filter>Header Files\LevelUI</Filter>
     </ClInclude>
     <ClInclude Include="ProgressCar.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelOverlay.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTextUpdater.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="FuelTextUpdater.h">
       <Filter>Header Files\LevelUI</Filter>
     </ClInclude>
   </ItemGroup>

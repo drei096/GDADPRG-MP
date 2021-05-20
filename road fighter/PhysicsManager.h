@@ -27,6 +27,7 @@ private:
 	PhysicsManager& operator=(PhysicsManager const&) {};  // assignment operator is private
 	static PhysicsManager* sharedInstance;
 	float ticks;
+	bool countOnce = false;
 
 	CollisionList playerObject;
 	CollisionList enemyCarObjects;

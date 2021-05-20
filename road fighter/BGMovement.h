@@ -9,7 +9,7 @@ public:
 	void perform();
 
 
-	float SPEED_MULTIPLIER = 1000.0f;
+	float SPEED_MULTIPLIER = 0.0f;
 	float totalDistanceTravelled = 0.0f;
 	float MAX_DISTANCE;
 };

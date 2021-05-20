@@ -9,7 +9,7 @@ public:
 	void perform();
 
 private:
-	const float SPAWN_INTERVAL = 0.01f;
+	const float SPAWN_INTERVAL = 5.0f;
 	float ticks = 0.0f;
 };
 

@@ -9,6 +9,7 @@
 #include "EmptyGameObject.h"
 #include "PhysicsManager.h"
 #include "ProgressBar.h"
+#include "LevelOverlay.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -20,16 +21,22 @@ Level1PlayScene::~Level1PlayScene()
 
 void Level1PlayScene::onLoadResources()
 {
+	/*
 	UIText* scoreText = new UIText("score_text");
 	scoreText->setPosition(-70,-80);
 	scoreText->setSize(10);
 	scoreText->setText("1P\n 00000000");
+	*/
 }
 
 void Level1PlayScene::onLoadObjects()
 {
-	BG* bg = new BG("BG", 30000.0f);
+
+	BG* bg = new BG("BG", 100000.0f);
 	this->registerObject(bg);
+
+	LevelOverlay* levelOverlay = new LevelOverlay("levelOverlay");
+	this->registerObject(levelOverlay);
 
 	ProgressBar* progress = new ProgressBar("progressBar");
 	this->registerObject(progress);

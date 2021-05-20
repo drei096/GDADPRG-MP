@@ -71,6 +71,7 @@ void PhysicsManager::clearAll()
 void PhysicsManager::perform()
 {
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
+	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
 	//cout << sharedInstance->playerObject[0]->getName() << endl;
 
 	for (int x = 0; x < sharedInstance->enemyCarObjects.size(); x++)
@@ -82,14 +83,15 @@ void PhysicsManager::perform()
 			DeathPopUp* deathPopUp = new DeathPopUp("deathPopUp");
 			GameObjectManager::getInstance()->addObject(deathPopUp);
 			*/
-			bgMove->SPEED_MULTIPLIER = 500.0f;
+			player->collisions++;
+			bgMove->SPEED_MULTIPLIER -= 10.0f;
 
 
 			//cout << "Collide!" << endl;
 		}
 	}
 
-
+	/*
 	this->ticks += this->deltaTime.asSeconds();
 
 	if (this->ticks >= 1.0f) {
@@ -98,6 +100,7 @@ void PhysicsManager::perform()
 
 	}
 	enemyCarObjects.clear();
+	*/
 }
 
 void PhysicsManager::cleanUpObjects()

@@ -21,9 +21,10 @@ void EnemyCar::initialize()
 	sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
 	sprite->setScale(0.5, 0.5);
 
-	this->setPosition(Game::WINDOW_WIDTH / 2, -30);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
-	this->getTransformable()->move(rand() % 300 - rand() % 300, 0);
+	int sign = rand() % 2;
+	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1) , 0);
 	//this->getTransformable()->setRotation(180); //must face towards player
 
 
@@ -47,9 +48,10 @@ void EnemyCar::onRelease()
 {
 	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyBehavior");
 	behavior->reset();
-	this->setPosition(Game::WINDOW_WIDTH / 2, -30);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
-	this->getTransformable()->move(rand() % 65 - rand() % 65, 0);
+	int sign = rand() % 2;
+	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 }
 
 void EnemyCar::onActivate()
@@ -57,9 +59,10 @@ void EnemyCar::onActivate()
 	//reset state
 	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyBehavior");
 	behavior->reset();
-	this->setPosition(Game::WINDOW_WIDTH / 2, -30);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
-	this->getTransformable()->move(rand() % 65 - rand() % 65, 0);
+	int sign = rand() % 2;
+	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 }
 
 ObjectPoolable* EnemyCar::clone()
