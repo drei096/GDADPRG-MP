@@ -10,6 +10,11 @@
 #include "PhysicsManager.h"
 #include "ProgressBar.h"
 #include "LevelOverlay.h"
+#include "ApplicationManager.h"
+#include "EnemyCar.h"
+#include "EnemyBehavior.h"
+#include "EnemyCyanCar.h"
+#include "EnemyCyanCarClone.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -27,6 +32,7 @@ void Level1PlayScene::onLoadResources()
 	scoreText->setSize(10);
 	scoreText->setText("1P\n 00000000");
 	*/
+	ApplicationManager::getInstance()->resumeApplication();
 }
 
 void Level1PlayScene::onLoadObjects()
@@ -48,13 +54,20 @@ void Level1PlayScene::onLoadObjects()
 
 	srand(time(NULL));
 	EmptyGameObject* enemiesManager = new EmptyGameObject("EnemiesManager");
-	EnemyCarClone* swarmHandler = new EnemyCarClone(2, "SwarmHandler");
+	EnemyCarClone* swarmHandler = new EnemyCarClone(5, "SwarmHandler");
 	enemiesManager->attachComponent(swarmHandler);
 	this->registerObject(enemiesManager);
 
+	/*
+	EmptyGameObject* cyanEnemiesManager = new EmptyGameObject("cyanEnemiesManager");
+	EnemyCyanCarClone* CSwarmHandler = new EnemyCyanCarClone(5, "CSwarmHandler");
+	enemiesManager->attachComponent(CSwarmHandler);
+	this->registerObject(cyanEnemiesManager);
+	*/
 
 	PhysicsManager::initialize("PlayerP6", player);
 	PhysicsManager::initialize("EnemyCarP6", enemiesManager);
+	//PhysicsManager::initialize("CyanEnemyCarP6", cyanEnemiesManager);
 }
 
 void Level1PlayScene::onUnloadObjects()

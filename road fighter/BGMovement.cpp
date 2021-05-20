@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "GameObject.h"
 #include "ApplicationManager.h"
+#include "GameObjectManager.h"
+#include "LevelOverScreen.h"
 BGMovement::BGMovement(string name, float _MAX) : ObjectComponent(name, Script)
 {
 	this->MAX_DISTANCE = _MAX;
@@ -31,5 +33,7 @@ void BGMovement::perform()
 
 	if (this->totalDistanceTravelled >= this->MAX_DISTANCE) {
 		ApplicationManager::getInstance()->pauseApplication();
+		LevelOverScreen* levelOverScreen = new LevelOverScreen("levelOverScreen");
+		GameObjectManager::getInstance()->addObject(levelOverScreen);
 	}
 }

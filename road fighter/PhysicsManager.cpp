@@ -7,6 +7,7 @@
 #include "ApplicationManager.h"
 #include "BGMovement.h"
 #include <iostream>
+#include "LevelOverlay.h"
 
 PhysicsManager* PhysicsManager::sharedInstance = NULL;
 
@@ -72,6 +73,9 @@ void PhysicsManager::perform()
 {
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
+	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
+	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
+	
 	//cout << sharedInstance->playerObject[0]->getName() << endl;
 
 	for (int x = 0; x < sharedInstance->enemyCarObjects.size(); x++)
@@ -83,10 +87,17 @@ void PhysicsManager::perform()
 			DeathPopUp* deathPopUp = new DeathPopUp("deathPopUp");
 			GameObjectManager::getInstance()->addObject(deathPopUp);
 			*/
+			
+			//play nalang siguro ng lose sound dito kasi bawas pts ka
+			//para ensured na 1 collision lang ang mangyayari sa car, kapag wala kasi to, multiple collisions mangyayari
+			//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->enemyCarObjects[x]->getOwner());
+		
+
 			player->collisions++;
-			bgMove->SPEED_MULTIPLIER -= 10.0f;
+			bgMove->SPEED_MULTIPLIER = 0.0f;
 
-
+			cout << "player collisions: " << player->collisions << endl;
+			
 			//cout << "Collide!" << endl;
 		}
 	}

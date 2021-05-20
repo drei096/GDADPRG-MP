@@ -21,6 +21,7 @@ public:
 	void clearAll();
 	void perform();
 
+
 private:
 	PhysicsManager(string name) : ObjectComponent(name, Script) {};
 	PhysicsManager(PhysicsManager const&) : ObjectComponent(name, Script) {};             // copy constructor is private

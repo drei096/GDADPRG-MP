@@ -2,6 +2,9 @@
 #include "GameObjectPool.h"
 #include "ObjectPoolHolder.h"
 #include "EnemyCar.h"
+#include "PlayerCar.h"
+#include "PlayerInputController.h"
+#include "GameObjectManager.h"
 
 EnemyCarClone::EnemyCarClone(int numEnemies, string name) : ObjectComponent(name, Script)
 {
@@ -17,12 +20,19 @@ EnemyCarClone::~EnemyCarClone()
 
 void EnemyCarClone::perform()
 {
-	GameObjectPool* enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG);
-	this->ticks += this->deltaTime.asSeconds();
+	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
+	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
+	
+	if (inputController->isFirstGear() || inputController->isSecondGear())
+	{
+		GameObjectPool* enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG);
+		this->ticks += this->deltaTime.asSeconds();
 
-	if (this->ticks > SPAWN_INTERVAL) {
-		this->ticks = 0.0f;
-		enemyPool->requestPoolable();
+		if (this->ticks > SPAWN_INTERVAL) {
+			this->ticks = 0.0f;
+			enemyPool->requestPoolable();
 
+		}
 	}
+	
 }

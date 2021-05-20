@@ -25,6 +25,8 @@ void TextureManager::loadAllTextures()
     loadTexture("buttonSpriteSheet", "Media/Textures/arcade_buttons.png");
     loadTexture("popUpYellow", "Media/Textures/PopUpTextures/Yellow.png");
     loadTexture("popUpGray", "Media/Textures/PopUpTextures/Gray.png");
+    loadTexture("textBoxSpriteSheet", "Media/Textures/ui_greenSheet.png");
+    loadTexture("enemyCivCars", "Media/Textures/civ_cars_spritesheet.png");
 }
 
 Texture* TextureManager::getTextureByKey(string key)

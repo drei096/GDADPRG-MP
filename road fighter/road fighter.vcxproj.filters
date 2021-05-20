@@ -189,6 +189,18 @@
     <ClCompile Include="FuelTextUpdater.cpp">
       <Filter>Source Files\LevelUI</Filter>
     </ClCompile>
+    <ClCompile Include="LevelOverScreen.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="NoFuelScreen.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCyanCar.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCyanCarClone.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -310,6 +322,18 @@
     </ClInclude>
     <ClInclude Include="FuelTextUpdater.h">
       <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelOverScreen.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="NoFuelScreen.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCyanCar.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCyanCarClone.h">
+      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

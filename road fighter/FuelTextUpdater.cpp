@@ -8,6 +8,9 @@
 #include "LevelOverlay.h"
 #include "ApplicationManager.h"
 #include <iostream>
+#include "PlayerCar.h"
+#include "PlayerInputController.h"
+#include "NoFuelScreen.h"
 
 FuelTextUpdater::FuelTextUpdater(string name) : ObjectComponent(name, Script)
 {
@@ -22,7 +25,8 @@ void FuelTextUpdater::perform()
 {
 	UIText* fuelScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("fuel_text");
 	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
-
+	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
+	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 
 	if (fuelScore == NULL || levelOverlay == NULL)
 	{
@@ -33,14 +37,21 @@ void FuelTextUpdater::perform()
 	//cout << collisionCount << endl;
 	//cout << carProgress->laps << endl;
 
-	this->ticks += this->deltaTime.asSeconds() * 1.5;
+	if (inputController->isSecondGear() || inputController->isFirstGear())
+	{
+		this->ticks += this->deltaTime.asSeconds() * 1.5;
 
-	levelOverlay->fuel = 100 - (int)this->ticks;
+		levelOverlay->fuel = 100 - ((int)this->ticks * 0.5); //slowed down the decrease rate of fuel
 
-	fuelScore->setText("FUEL\n\t\t" + (to_string)(levelOverlay->fuel));
+		fuelScore->setText("FUEL\n\t\t" + (to_string)(levelOverlay->fuel));
 
-	if (levelOverlay->fuel == 0) {
-		ApplicationManager::getInstance()->pauseApplication();
+		if (levelOverlay->fuel == 0) {
+			ApplicationManager::getInstance()->pauseApplication();
+			NoFuelScreen* noFuelScreen = new NoFuelScreen("noFuelScreen");
+			GameObjectManager::getInstance()->addObject(noFuelScreen);
+		}
 	}
+
+	
 
 }
