@@ -15,6 +15,12 @@
 #include "EnemyBehavior.h"
 #include "EnemyCyanCar.h"
 #include "EnemyCyanCarClone.h"
+#include "EnemyYellowCar.h"
+#include "EnemyYellowCarClone.h"
+#include "EnemyTruck.h"
+#include "EnemyTruckClone.h"
+#include "FuelCar.h"
+#include "FuelCarClone.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -53,17 +59,32 @@ void Level1PlayScene::onLoadObjects()
 
 
 	srand(time(NULL));
+	
 	EmptyGameObject* enemiesManager = new EmptyGameObject("EnemiesManager");
-	EnemyCarClone* swarmHandler = new EnemyCarClone(5, "SwarmHandler");
+	EnemyCarClone* swarmHandler = new EnemyCarClone(10, "SwarmHandler");
 	enemiesManager->attachComponent(swarmHandler);
 	this->registerObject(enemiesManager);
 
-	
 	EmptyGameObject* cyanEnemiesManager = new EmptyGameObject("cyanEnemiesManager");
-	EnemyCyanCarClone* CSwarmHandler = new EnemyCyanCarClone(5, "CSwarmHandler");
-	enemiesManager->attachComponent(CSwarmHandler);
+	EnemyCyanCarClone* CSwarmHandler = new EnemyCyanCarClone(10, "CSwarmHandler");
+	cyanEnemiesManager->attachComponent(CSwarmHandler);
 	this->registerObject(cyanEnemiesManager);
 	
+	EmptyGameObject* yellowEnemiesManager = new EmptyGameObject("yellowEnemiesManager");
+	EnemyYellowCarClone* YSwarmHandler = new EnemyYellowCarClone(10, "YSwarmHandler");
+	yellowEnemiesManager->attachComponent(YSwarmHandler);
+	this->registerObject(yellowEnemiesManager);
+
+	EmptyGameObject* truckEnemiesManager = new EmptyGameObject("truckEnemiesManager");
+	EnemyTruckClone* TSwarmHandler = new EnemyTruckClone(10, "TSwarmHandler");
+	truckEnemiesManager->attachComponent(TSwarmHandler);
+	this->registerObject(truckEnemiesManager);
+	
+
+	EmptyGameObject* fuelEnemiesManager = new EmptyGameObject("fuelEnemiesManager");
+	FuelCarClone* FSwarmHandler = new FuelCarClone(10, "FSwarmHandler");
+	fuelEnemiesManager->attachComponent(FSwarmHandler);
+	this->registerObject(fuelEnemiesManager);
 
 	PhysicsManager::initialize("PlayerP6", player);
 	PhysicsManager::initialize("EnemyCarP6", enemiesManager);

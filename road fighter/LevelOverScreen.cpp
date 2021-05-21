@@ -24,7 +24,7 @@ LevelOverScreen::~LevelOverScreen()
 void LevelOverScreen::initialize()
 {
 	SFXManager::getInstance()->getSFX("levelBGM")->stop();
-	SFXManager::getInstance()->getSFX("gameOverBGM")->play();
+	SFXManager::getInstance()->getSFX("level_endBGM")->play();
 
 	sf::Sprite* sprite = new sf::Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("textBoxSpriteSheet"));
@@ -52,14 +52,14 @@ void LevelOverScreen::initialize()
 
 	UIText* button_1Text = new UIText("text_1");
 	button->attachChild(button_1Text);
-	button_1Text->setPosition(-20, -80);
+	button_1Text->setPosition(0, -80);
 	button_1Text->setSize(15);
 	button_1Text->setText("GO TO MAIN MENU");
 
 	UIText* displayText = new UIText("displayText");
 	this->attachChild(displayText);
-	displayText->setPosition(-20, -100);
-	displayText->setSize(40);
+	displayText->setPosition(0, -100);
+	displayText->setSize(30);
 	displayText->setText("Congratulations!");
 
 }

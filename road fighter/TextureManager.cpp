@@ -20,7 +20,7 @@ void TextureManager::loadAllTextures()
     bgTex = getTextureByKey("bg1");
     bgTex->setRepeated(true);
     loadTexture("player", "Media/Textures/p_car.png");
-    loadTexture("enemyCar", "Media/Textures/GalardB.png");
+    //loadTexture("enemyCar", "Media/Textures/GalardB.png");
     loadTexture("menuLogo", "Media/Textures/logo.png");
     loadTexture("buttonSpriteSheet", "Media/Textures/arcade_buttons.png");
     loadTexture("popUpYellow", "Media/Textures/PopUpTextures/Yellow.png");

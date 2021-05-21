@@ -32,7 +32,13 @@
     <ClCompile Include="EnemyCarClone.cpp" />
     <ClCompile Include="EnemyCyanCar.cpp" />
     <ClCompile Include="EnemyCyanCarClone.cpp" />
+    <ClCompile Include="EnemyTruck.cpp" />
+    <ClCompile Include="EnemyTruckClone.cpp" />
+    <ClCompile Include="EnemyYellowCar.cpp" />
+    <ClCompile Include="EnemyYellowCarClone.cpp" />
     <ClCompile Include="FontManager.cpp" />
+    <ClCompile Include="FuelCar.cpp" />
+    <ClCompile Include="FuelCarClone.cpp" />
     <ClCompile Include="FuelTextUpdater.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -82,7 +88,13 @@
     <ClInclude Include="EnemyCarClone.h" />
     <ClInclude Include="EnemyCyanCar.h" />
     <ClInclude Include="EnemyCyanCarClone.h" />
+    <ClInclude Include="EnemyTruck.h" />
+    <ClInclude Include="EnemyTruckClone.h" />
+    <ClInclude Include="EnemyYellowCar.h" />
+    <ClInclude Include="EnemyYellowCarClone.h" />
     <ClInclude Include="FontManager.h" />
+    <ClInclude Include="FuelCar.h" />
+    <ClInclude Include="FuelCarClone.h" />
     <ClInclude Include="FuelTextUpdater.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />

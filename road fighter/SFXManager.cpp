@@ -21,6 +21,7 @@ void SFXManager::loadAllSFX() {
 	SFXManager::getInstance()->getSFX("levelBGM")->setLoop(true);
 	loadSFX("gameOverBGM", "Media/Sounds/BGM/designate_patreon.ogg");
 	SFXManager::getInstance()->getSFX("gameOverBGM")->setLoop(true);
+	loadSFX("level_endBGM", "Media/Sounds/BGM/level_end.ogg");
 
 	//SFX LOADING
 	loadSFX("collide", "Media/Sounds/SFX/collide.ogg");

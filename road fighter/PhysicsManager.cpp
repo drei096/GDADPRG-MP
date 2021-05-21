@@ -90,9 +90,6 @@ void PhysicsManager::perform()
 			sharedInstance->playerObject[0]->setChecked(true);
 			sharedInstance->enemyCarObjects[x]->setChecked(true);
 			
-			//play nalang siguro ng lose sound dito kasi bawas pts ka
-			//para ensured na 1 collision lang ang mangyayari sa car, kapag wala kasi to, multiple collisions mangyayari
-			//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->enemyCarObjects[x]->getOwner());
 
 			SFXManager::getInstance()->getSFX("collide")->play();
 
@@ -136,31 +133,30 @@ void PhysicsManager::perform()
 		}
 	}
 
-	/*
+	
 	for (int x = 0; x < sharedInstance->fuelCarObjects.size(); x++)
 	{
-		sharedInstance->playerObject[0]->setAlreadyCollided(sharedInstance->playerObject[0]->willCollide(sharedInstance->fuelCarObjects[x]));
+		//sharedInstance->playerObject[0]->setAlreadyCollided(sharedInstance->playerObject[0]->willCollide(sharedInstance->fuelCarObjects[x]));
 		//cout << sharedInstance->trackedObjects[0]->getName() << endl;
-		if (sharedInstance->playerObject[0]->alreadyCollided() && (!sharedInstance->playerObject[0]->isChecked() && !sharedInstance->fuelCarObjects[x]->isChecked()))
+		if (sharedInstance->playerObject[0]->willCollide(sharedInstance->fuelCarObjects[x]) == true)
 		{
-			sharedInstance->playerObject[0]->setChecked(true);
-			sharedInstance->fuelCarObjects[x]->setChecked(true);			
+			//sharedInstance->playerObject[0]->setChecked(true);
+			//sharedInstance->fuelCarObjects[x]->setChecked(true);			
 
-			cout << "player collisions: " << player->collisions << endl;
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
+
+			//cout << "player collisions: " << player->collisions << endl;
 
 			//cout << "Collide!" << endl;
 		}
-		else if (!sharedInstance->playerObject[0]->alreadyCollided() && (sharedInstance->playerObject[0]->isChecked() && sharedInstance->enemyCarObjects[x]->isChecked()))
-		{
-			sharedInstance->playerObject[0]->setChecked(false);
-			sharedInstance->enemyCarObjects[x]->setChecked(false);
-		}
+		
 	}
-	*/
+	
 }
 
 void PhysicsManager::cleanUpObjects()
 {
 	playerObject.clear();
 	enemyCarObjects.clear();
+	fuelCarObjects.clear();
 }

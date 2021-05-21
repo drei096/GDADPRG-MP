@@ -1,11 +1,10 @@
 #pragma once
 #include "ObjectComponent.h"
-
-class EnemyCarClone : public ObjectComponent
+class EnemyYellowCarClone : public ObjectComponent
 {
 public:
-	EnemyCarClone(int numEnemies, string name);
-	~EnemyCarClone();
+	EnemyYellowCarClone(int numEnemies, string name);
+	~EnemyYellowCarClone();
 	void perform();
 
 private:

@@ -1,4 +1,4 @@
-#include "EnemyCyanCar.h"
+#include "EnemyTruck.h"
 #include "TextureManager.h"
 #include "Game.h"
 #include "EnemyBehavior.h"
@@ -7,24 +7,24 @@
 #include "Collider.h"
 #include "PhysicsManager.h"
 
-EnemyCyanCar::EnemyCyanCar(string name) : ObjectPoolable(name)
-{
 
+EnemyTruck::EnemyTruck(string name) : ObjectPoolable(name)
+{
 }
 
-void EnemyCyanCar::initialize()
+void EnemyTruck::initialize()
 {
 	srand(time(NULL));
 	//assign texture
 	sf::Sprite* sprite = new sf::Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("enemyCivCars"));
 
-	sprite->setTextureRect(sf::IntRect(1000, 0, 300, 340)); //blue car from spritesheet
+	sprite->setTextureRect(sf::IntRect(0, 0, 44, 84)); //truck car from spritesheet
 	sprite->setScale(0.5, 0.5);
 
 	sf::Vector2u textureSize = sprite->getTexture()->getSize();
-	sprite->setOrigin(300 / 2, 340 / 2);
-	sprite->setScale(0.1, 0.1);
+	sprite->setOrigin(44 / 2, 84 / 2);
+	sprite->setScale(0.5, 0.5);
 
 	this->setPosition((rand()%(Game::WINDOW_WIDTH / 2) - 25), Game::WINDOW_HEIGHT);
 	//randomize
@@ -33,11 +33,11 @@ void EnemyCyanCar::initialize()
 	//this->getTransformable()->setRotation(180); //must face towards player
 
 
-	Renderer* renderer = new Renderer("EnemyCyanSprite");
+	Renderer* renderer = new Renderer("EnemyTruckSprite");
 	renderer->assignDrawable(sprite);
 	this->attachComponent(renderer);
 
-	EnemyBehavior* behavior = new EnemyBehavior("EnemyCyanBehavior", 500.0f);
+	EnemyBehavior* behavior = new EnemyBehavior("EnemyTruckBehavior", 200.0f);
 	this->attachComponent(behavior);
 	behavior->configure(1.0f);
 
@@ -45,12 +45,11 @@ void EnemyCyanCar::initialize()
 	Collider* collide = new Collider("EnemyCollide", sprite, Collider::ObjectType::EnemyCar);
 	this->attachComponent(collide);
 	PhysicsManager::getInstance()->trackObject(collide);
-
 }
 
-void EnemyCyanCar::onRelease()
+void EnemyTruck::onRelease()
 {
-	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyCyanBehavior");
+	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyTruckBehavior");
 	behavior->reset();
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
@@ -58,10 +57,9 @@ void EnemyCyanCar::onRelease()
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 }
 
-void EnemyCyanCar::onActivate()
+void EnemyTruck::onActivate()
 {
-	//reset state
-	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyCyanBehavior");
+	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyTruckBehavior");
 	behavior->reset();
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
@@ -69,8 +67,8 @@ void EnemyCyanCar::onActivate()
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 }
 
-ObjectPoolable* EnemyCyanCar::clone()
+ObjectPoolable* EnemyTruck::clone()
 {
-	ObjectPoolable* copyObj = new EnemyCyanCar(this->name);
+	ObjectPoolable* copyObj = new EnemyTruck(this->name);
 	return copyObj;
 }

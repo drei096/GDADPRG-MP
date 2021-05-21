@@ -14,14 +14,19 @@ EnemyCar::EnemyCar(string name) : ObjectPoolable(name)
 
 void EnemyCar::initialize()
 {
+	srand(time(NULL));
 	//assign texture
 	sf::Sprite* sprite = new sf::Sprite();
-	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("enemyCar"));
-	sf::Vector2u textureSize = sprite->getTexture()->getSize();
-	sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
+	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("enemyCivCars"));
+
+	sprite->setTextureRect(sf::IntRect(245, 0, 300, 340)); //blue car from spritesheet
 	sprite->setScale(0.5, 0.5);
 
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, Game::WINDOW_HEIGHT);
+	sf::Vector2u textureSize = sprite->getTexture()->getSize();
+	sprite->setOrigin(300 / 2, 340 / 2);
+	sprite->setScale(0.1, 0.1);
+
+	this->setPosition((rand()%(Game::WINDOW_WIDTH / 2) - 25), Game::WINDOW_HEIGHT);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1) , 0);
@@ -33,7 +38,7 @@ void EnemyCar::initialize()
 	this->attachComponent(renderer);
 
 	
-	EnemyBehavior* behavior = new EnemyBehavior("EnemyBehavior", 200.0f);
+	EnemyBehavior* behavior = new EnemyBehavior("EnemyBehavior", 500.0f);
 	this->attachComponent(behavior);
 	behavior->configure(1.0f);
 
@@ -51,7 +56,7 @@ void EnemyCar::onRelease()
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
 	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
+	this->getTransformable()->move((65 / ((rand() % (int)2.0) + 1.0)) * ((sign > 0) ? -1 : 1), 0);
 }
 
 void EnemyCar::onActivate()
@@ -62,7 +67,7 @@ void EnemyCar::onActivate()
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
 	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
+	this->getTransformable()->move((65 / ((rand() % (int)2.0) + 1.0)) * ((sign > 0) ? -1 : 1), 0);
 }
 
 ObjectPoolable* EnemyCar::clone()
