@@ -8,6 +8,7 @@
 #include "Renderer.h"
 #include "SceneManager.h"
 #include "PhysicsManager.h"
+#include "SFXManager.h"
 #include "Level1PlayScene.h"
 
 LevelOverScreen::LevelOverScreen(string name) : GameObject(name), ButtonListener()
@@ -22,6 +23,9 @@ LevelOverScreen::~LevelOverScreen()
 
 void LevelOverScreen::initialize()
 {
+	SFXManager::getInstance()->getSFX("levelBGM")->stop();
+	SFXManager::getInstance()->getSFX("gameOverBGM")->play();
+
 	sf::Sprite* sprite = new sf::Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("textBoxSpriteSheet"));
 
@@ -62,11 +66,12 @@ void LevelOverScreen::initialize()
 
 void LevelOverScreen::onButtonClick(UIButton* button)
 {
-	SceneManager::getInstance()->unloadScene();
-	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
-	ApplicationManager::getInstance()->resumeApplication();
 }
 
 void LevelOverScreen::onButtonReleased(UIButton* button)
 {
+	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
+	SceneManager::getInstance()->unloadScene();
+	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+	ApplicationManager::getInstance()->resumeApplication();
 }

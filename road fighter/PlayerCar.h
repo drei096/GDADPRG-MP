@@ -9,6 +9,7 @@ public:
 	void initialize();
 
 	int collisions = 0;
+	int speedCollision = 0;
 
 private:
 	const float SPEED_MULTIPLIER = 300.0f; //temp, might change

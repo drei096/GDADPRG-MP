@@ -32,6 +32,7 @@ private:
 
 	CollisionList playerObject;
 	CollisionList enemyCarObjects;
+	CollisionList fuelCarObjects;
 	CollisionList forCleaningObjects;
 
 	void cleanUpObjects();

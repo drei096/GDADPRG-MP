@@ -16,7 +16,7 @@ FontManager* FontManager::getInstance()
 void FontManager::loadAll()
 {
 
-	loadFont("default", "Media/Fonts/Sansation.ttf");
+	loadFont("default", "Media/Fonts/JoyStix.ttf");
 
 }
 

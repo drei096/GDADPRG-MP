@@ -25,7 +25,6 @@ bool Collider::isChecked()
 bool Collider::willCollide(Collider* another)
 {
     if (this->getGlobalBounds().intersects(another->getGlobalBounds())) {
-        setAlreadyCollided(true);
         return true;
     }
     return false;
@@ -55,12 +54,10 @@ void Collider::setLocalBounds(sf::FloatRect localBounds)
 
 void Collider::collisionEnter(GameObject* gameObjects)
 {
-
 }
 
 void Collider::collisionExit(GameObject* gameObjects)
 {
-
 }
 
 void Collider::perform()

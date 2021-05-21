@@ -11,6 +11,7 @@
 #include "PlayerCar.h"
 #include "PlayerInputController.h"
 #include "NoFuelScreen.h"
+#include "SFXManager.h"
 
 FuelTextUpdater::FuelTextUpdater(string name) : ObjectComponent(name, Script)
 {
@@ -39,9 +40,17 @@ void FuelTextUpdater::perform()
 
 	this->ticks += this->deltaTime.asSeconds() * 1.5;
 
-	levelOverlay->fuel = 100 - this->ticks; //slowed down the decrease rate of fuel
+	levelOverlay->fuel = 100 - this->ticks - player->collisions; //slowed down the decrease rate of fuel
 
-	fuelScore->setText("FUEL\n\t\t" + (to_string)(levelOverlay->fuel));
+	fuelScore->setText("FUEL \n" + (to_string)(levelOverlay->fuel));
+
+	if (levelOverlay->fuel <= 10) {
+		this->lowFuel += this->deltaTime.asSeconds();
+		if (this->lowFuel >= 1.0f) {
+			SFXManager::getInstance()->getSFX("beep")->play();
+			this->lowFuel = 0;
+		}
+	}
 
 	if (levelOverlay->fuel == 0) {
 		ApplicationManager::getInstance()->pauseApplication();

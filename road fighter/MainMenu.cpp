@@ -7,6 +7,7 @@
 #include "GameObjectManager.h"
 #include "ApplicationManager.h"
 #include "SceneManager.h"
+#include "SFXManager.h"
 #include <iostream>
 
 MainMenu::MainMenu(string name) : GameObject(name), ButtonListener()
@@ -20,6 +21,8 @@ MainMenu::~MainMenu()
 
 void MainMenu::initialize()
 {
+	SFXManager::getInstance()->getSFX("menuBGM")->play();
+
 	Sprite* sprite2 = new Sprite();
 	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));
 	Vector2u textureSize2 = sprite2->getTexture()->getSize();
@@ -48,13 +51,13 @@ void MainMenu::initialize()
 	
 	UIButton* button1 = new UIButton("button_1", btnNormal, btnPressed);
 	this->attachChild(button1);
-	button1->setPosition(150, 500);
+	button1->setPosition((Game::WINDOW_WIDTH / 2) - 50, 500);
 	button1->getTransformable()->setScale(3.0f, 3.0f);
 	button1->setButtonListener(this);
 	
 	UIText* button_1Text = new UIText("text_1");
 	button1->attachChild(button_1Text);
-	button_1Text->setPosition(-70, -80);
+	button_1Text->setPosition(-110, -100);
 	button_1Text->setSize(10);
 	button_1Text->setText("LEVEL 1");
 
@@ -96,6 +99,7 @@ void MainMenu::onButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1")
 	{
+		SFXManager::getInstance()->getSFX("menuBGM")->stop();
 		SceneManager::getInstance()->loadScene(SceneManager::LEVEL1_SCENE_NAME);
 	}
 	//std::cout << button->getName();

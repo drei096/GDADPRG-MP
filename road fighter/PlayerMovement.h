@@ -15,5 +15,6 @@ private:
 
 private:
 	const float SPEED_MULTIPLIER = 300.0f;
+	float ticks = 0;
 };
 

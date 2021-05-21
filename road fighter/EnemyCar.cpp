@@ -33,7 +33,7 @@ void EnemyCar::initialize()
 	this->attachComponent(renderer);
 
 	
-	EnemyBehavior* behavior = new EnemyBehavior("EnemyBehavior");
+	EnemyBehavior* behavior = new EnemyBehavior("EnemyBehavior", 200.0f);
 	this->attachComponent(behavior);
 	behavior->configure(1.0f);
 

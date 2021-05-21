@@ -22,8 +22,8 @@ void EnemyCyanCar::initialize()
 	sprite->setScale(0.5, 0.5);
 
 	sf::Vector2u textureSize = sprite->getTexture()->getSize();
-	sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
-	sprite->setScale(0.5, 0.5);
+	sprite->setOrigin(300 / 2, 340 / 2);
+	sprite->setScale(0.1, 0.1);
 
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, Game::WINDOW_HEIGHT);
 	//randomize
@@ -36,8 +36,7 @@ void EnemyCyanCar::initialize()
 	renderer->assignDrawable(sprite);
 	this->attachComponent(renderer);
 
-
-	EnemyBehavior* behavior = new EnemyBehavior("EnemyCyanBehavior");
+	EnemyBehavior* behavior = new EnemyBehavior("EnemyCyanBehavior", 500.0f);
 	this->attachComponent(behavior);
 	behavior->configure(1.0f);
 

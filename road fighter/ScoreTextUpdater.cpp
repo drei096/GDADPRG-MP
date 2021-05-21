@@ -7,7 +7,6 @@
 #include "UIText.h"
 #include "LevelOverlay.h"
 #include <iostream>
-#include "PlayerCar.h"
 #include "PhysicsManager.h"
 
 ScoreTextUpdater::ScoreTextUpdater(string name) : ObjectComponent(name, Script)
@@ -24,7 +23,6 @@ void ScoreTextUpdater::perform()
 	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
 	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
 	ProgressBar* carProgress = (ProgressBar*)GameObjectManager::getInstance()->findObjectByName("progressBar");
-	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
 
 	if (textScore == NULL || levelOverlay == NULL || carProgress == NULL)
 	{
@@ -39,6 +37,6 @@ void ScoreTextUpdater::perform()
 
 	levelOverlay->score = (laps - 1) * 50;
 
-	textScore->setText("SCORE\n\t\t" + (to_string)(levelOverlay->score));
+	textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
 
 }

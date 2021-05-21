@@ -8,6 +8,7 @@
 #include "Renderer.h"
 #include "SceneManager.h"
 #include "PhysicsManager.h"
+#include "SFXManager.h"
 #include "Level1PlayScene.h"
 
 NoFuelScreen::NoFuelScreen(string name) : GameObject(name), ButtonListener()
@@ -22,6 +23,9 @@ NoFuelScreen::~NoFuelScreen()
 
 void NoFuelScreen::initialize()
 {
+	SFXManager::getInstance()->getSFX("levelBGM")->stop();
+	SFXManager::getInstance()->getSFX("gameOverBGM")->play();
+
 	sf::Sprite* sprite = new sf::Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("textBoxSpriteSheet"));
 
@@ -48,14 +52,14 @@ void NoFuelScreen::initialize()
 
 	UIText* button_1Text = new UIText("text_1");
 	button->attachChild(button_1Text);
-	button_1Text->setPosition(-20, -80);
+	button_1Text->setPosition(0, -80);
 	button_1Text->setSize(15);
 	button_1Text->setText("GO TO MAIN MENU");
 
 	UIText* displayText = new UIText("displayText");
 	this->attachChild(displayText);
 	displayText->setPosition(-20, -100);
-	displayText->setSize(40);
+	displayText->setSize(30);
 	displayText->setText("Ran out of fuel!");
 
 }
@@ -66,6 +70,7 @@ void NoFuelScreen::onButtonClick(UIButton* button)
 
 void NoFuelScreen::onButtonReleased(UIButton* button)
 {
+	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
 	SceneManager::getInstance()->unloadScene();
 	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 	ApplicationManager::getInstance()->resumeApplication();

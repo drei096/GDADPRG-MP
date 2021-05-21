@@ -5,7 +5,7 @@
 class Collider : public ObjectComponent {
 
 public:
-	enum ObjectType { Player = 0, Bullet = 1, EnemyCar = 2, None = 3 };
+	enum ObjectType { Player = 0, Fuel = 1, EnemyCar = 2, None = 3 };
 
 	Collider(string name, sf::Sprite* sprite, ObjectType type);
 
@@ -24,6 +24,7 @@ public:
 	void setLocalBounds(sf::FloatRect localBounds);
 	void collisionEnter(GameObject* gameObjects);
 	void collisionExit(GameObject* gameObjects);
+	float ticks = 0;
 
 	void perform();
 private:

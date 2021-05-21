@@ -9,6 +9,5 @@ public:
 	void perform();
 	int laps = 1;
 	
-
 };
 

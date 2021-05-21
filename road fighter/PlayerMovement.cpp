@@ -8,7 +8,9 @@
 #include "ObjectPoolHolder.h"
 #include "ObjectPoolable.h"
 #include "EnemyCar.h"
+#include "PlayerCar.h"
 #include "Game.h"
+#include "SFXManager.h"
 #include <iostream>
 
 PlayerMovement::PlayerMovement(string name) : ObjectComponent(name, Script)
@@ -25,6 +27,7 @@ void PlayerMovement::perform()
 	PlayerInputController* inputController = (PlayerInputController*)this->getOwner()->getComponentsOfType(componentType::Input)[0];
 	Transformable* playerTransformable = this->getOwner()->getTransformable();
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
+	PlayerCar* playerCar = (PlayerCar*)this->getOwner();
 
 	if (playerTransformable == NULL || inputController == NULL) 
 	{
@@ -50,9 +53,17 @@ void PlayerMovement::perform()
 
 		if (inputController->isRight())
 		{
+			this->ticks += this->deltaTime.asSeconds();
 			//this->resetSpeedMultiplier();
 			if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
 				playerTransformable->setPosition(playerTransformable->getPosition());
+				if (this->ticks > 0.5f) {
+					SFXManager::getInstance()->getSFX("collide")->play();
+					playerCar->getTransformable()->move(-20, 0);
+					playerCar->collisions++;
+					playerCar->speedCollision++;
+					this->ticks = 0;
+				}
 			}
 
 			else {
@@ -63,9 +74,17 @@ void PlayerMovement::perform()
 
 		else if (inputController->isLeft())
 		{
+			this->ticks += this->deltaTime.asSeconds();
 			//this->resetSpeedMultiplier();
 			if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
 				playerTransformable->setPosition(playerTransformable->getPosition());
+				if (this->ticks > 0.5f) {
+					SFXManager::getInstance()->getSFX("collide")->play();
+					playerCar->getTransformable()->move(20, 0);
+					playerCar->collisions++;
+					playerCar->speedCollision++;
+					this->ticks = 0;
+				}
 			}
 
 			else {
@@ -122,9 +141,17 @@ void PlayerMovement::perform()
 
 		if (inputController->isRight())
 		{
+			this->ticks += this->deltaTime.asSeconds();
 			//this->resetSpeedMultiplier();
 			if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
 				playerTransformable->setPosition(playerTransformable->getPosition());
+				if (this->ticks > 0.5f) {
+					SFXManager::getInstance()->getSFX("collide")->play();
+					playerCar->getTransformable()->move(-20, 0);
+					playerCar->collisions++;
+					playerCar->speedCollision++;
+					this->ticks = 0;
+				}
 			}
 
 			else {
@@ -135,9 +162,17 @@ void PlayerMovement::perform()
 
 		else if (inputController->isLeft())
 		{
+			this->ticks += this->deltaTime.asSeconds();
 			//this->resetSpeedMultiplier();
 			if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
 				playerTransformable->setPosition(playerTransformable->getPosition());
+				if (this->ticks > 0.5f) {
+					SFXManager::getInstance()->getSFX("collide")->play();
+					playerCar->getTransformable()->move(20, 0);
+					playerCar->collisions++;
+					playerCar->speedCollision++;
+					this->ticks = 0;
+				}
 			}
 
 			else {

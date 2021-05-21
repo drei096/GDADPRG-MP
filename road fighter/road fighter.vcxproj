@@ -23,6 +23,7 @@
     <ClCompile Include="BG.cpp" />
     <ClCompile Include="BGMovement.cpp" />
     <ClCompile Include="ButtonListener.cpp" />
+    <ClCompile Include="CarCrashScreen.cpp" />
     <ClCompile Include="CarProgressMovement.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EmptyGameObject.cpp" />
@@ -59,6 +60,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreTextUpdater.cpp" />
+    <ClCompile Include="SFXManager.cpp" />
+    <ClCompile Include="ShortTimeCollisions.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIButtonInputController.cpp" />
@@ -69,6 +72,7 @@
     <ClInclude Include="BG.h" />
     <ClInclude Include="BGMovement.h" />
     <ClInclude Include="ButtonListener.h" />
+    <ClInclude Include="CarCrashScreen.h" />
     <ClInclude Include="CarProgressMovement.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionListener.h" />
@@ -105,6 +109,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreTextUpdater.h" />
+    <ClInclude Include="SFXManager.h" />
+    <ClInclude Include="ShortTimeCollisions.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIButtonInputController.h" />
@@ -215,7 +221,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;%(AdditionalLibraryirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;opengl32.lib;freetype.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-audio-s-d.lib;sfml-network-s-d.lib;sfml-window-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -234,7 +240,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;%(AdditionalLibraryirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;opengl32.lib;freetype.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-audio-s.lib;sfml-network-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

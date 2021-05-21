@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "MainMenuScene.h"
+#include "SFXManager.h"
 #include "Level1PlayScene.h"
 
 
@@ -16,6 +17,7 @@ Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road 
 {
     TextureManager::getInstance()->loadAllTextures();
     FontManager::getInstance()->loadAll();
+    SFXManager::getInstance()->loadAllSFX();
 
     ApplicationManager::getInstance()->initialize(&this->window);
 
@@ -26,9 +28,6 @@ Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road 
     
     //PlayerCar* player = new PlayerCar("player");
     //GameObjectManager::getInstance()->addObject(player);
-    
-    
-
 };
 
 

@@ -4,8 +4,9 @@
 #include "Game.h";
 #include "ObjectPoolHolder.h"
 
-EnemyBehavior::EnemyBehavior(string name) : ObjectComponent(name, Script)
+EnemyBehavior::EnemyBehavior(string name, float _MULTIPLIER) : ObjectComponent(name, Script)
 {
+	this->SPEED_MULTIPLIER = _MULTIPLIER;
 	this->reset();
 }
 
@@ -26,6 +27,7 @@ void EnemyBehavior::perform()
 		//check if position is out of bounds, we can delete/return to pool
 		if (transformable->getPosition().y > Game::WINDOW_HEIGHT) {
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CYAN_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 		}
 	}
 

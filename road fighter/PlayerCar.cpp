@@ -6,6 +6,7 @@
 #include "PlayerMovement.h"
 #include <SFML/Graphics.hpp>
 #include "PhysicsManager.h"
+#include "ShortTimeCollisions.h"
 #include "Collider.h"
 
 PlayerCar::PlayerCar(string name) : GameObject(name)
@@ -32,6 +33,9 @@ void PlayerCar::initialize()
 	Collider* collide = new Collider("PlayerCollide", sprite, Collider::ObjectType::Player);
 	this->attachComponent(collide);
 	PhysicsManager::getInstance()->trackObject(collide);
+
+	ShortTimeCollisions* shortCol = new ShortTimeCollisions("shortTimeCollisions");
+	this->attachComponent(shortCol);
 
 	Renderer* renderer = new Renderer("playerSprite");
 	renderer->assignDrawable(sprite);

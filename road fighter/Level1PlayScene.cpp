@@ -58,12 +58,12 @@ void Level1PlayScene::onLoadObjects()
 	enemiesManager->attachComponent(swarmHandler);
 	this->registerObject(enemiesManager);
 
-	/*
+	
 	EmptyGameObject* cyanEnemiesManager = new EmptyGameObject("cyanEnemiesManager");
 	EnemyCyanCarClone* CSwarmHandler = new EnemyCyanCarClone(5, "CSwarmHandler");
 	enemiesManager->attachComponent(CSwarmHandler);
 	this->registerObject(cyanEnemiesManager);
-	*/
+	
 
 	PhysicsManager::initialize("PlayerP6", player);
 	PhysicsManager::initialize("EnemyCarP6", enemiesManager);

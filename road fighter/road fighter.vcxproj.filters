@@ -201,6 +201,15 @@
     <ClCompile Include="EnemyCyanCarClone.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="ShortTimeCollisions.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CarCrashScreen.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SFXManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -334,6 +343,15 @@
     </ClInclude>
     <ClInclude Include="EnemyCyanCarClone.h">
       <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortTimeCollisions.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CarCrashScreen.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SFXManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

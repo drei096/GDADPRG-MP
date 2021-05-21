@@ -9,6 +9,7 @@
 #include "SceneManager.h"
 #include "ScoreTextUpdater.h"
 #include "FuelTextUpdater.h"
+#include "SFXManager.h"
 #include <iostream>
 
 LevelOverlay::LevelOverlay(string name) : GameObject(name), ButtonListener()
@@ -22,7 +23,7 @@ LevelOverlay::~LevelOverlay()
 
 void LevelOverlay::initialize()
 {
-	cout << "yes" << endl;
+	SFXManager::getInstance()->getSFX("levelBGM")->play();
 	/*
 	Sprite* sprite2 = new Sprite();
 	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));
@@ -58,7 +59,7 @@ void LevelOverlay::initialize()
 	GameObjectManager::getInstance()->addObject(scoreText);
 	scoreText->setPosition((Game::WINDOW_WIDTH / 2) + 300, (Game::WINDOW_HEIGHT / 2) - 175);
 	scoreText->setSize(20);
-	scoreText->setText("SCORE\n\t\t" + (to_string)(this->score));
+	scoreText->setText("SCORE\n" + (to_string)(this->score));
 
 	ScoreTextUpdater* scoreTextUpdate = new ScoreTextUpdater("score_text_updater");
 	scoreText->attachComponent(scoreTextUpdate);
@@ -68,7 +69,7 @@ void LevelOverlay::initialize()
 	GameObjectManager::getInstance()->addObject(fuelText);
 	fuelText->setPosition((Game::WINDOW_WIDTH / 2) + 300, (Game::WINDOW_HEIGHT / 2));
 	fuelText->setSize(20);
-	fuelText->setText("FUEL\n\t\t" + (to_string)(this->fuel));
+	fuelText->setText("FUEL \n" + (to_string)(this->fuel));
 
 	FuelTextUpdater* fuelTextUpdate = new FuelTextUpdater("score_text_updater");
 	fuelText->attachComponent(fuelTextUpdate);
