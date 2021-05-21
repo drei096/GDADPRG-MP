@@ -142,6 +142,7 @@ void PhysicsManager::perform()
 		{
 			//sharedInstance->playerObject[0]->setChecked(true);
 			//sharedInstance->fuelCarObjects[x]->setChecked(true);			
+			SFXManager::getInstance()->getSFX("coin")->play();
 
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
 

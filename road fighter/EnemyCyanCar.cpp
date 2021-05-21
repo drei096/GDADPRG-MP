@@ -37,7 +37,7 @@ void EnemyCyanCar::initialize()
 	renderer->assignDrawable(sprite);
 	this->attachComponent(renderer);
 
-	EnemyBehavior* behavior = new EnemyBehavior("EnemyCyanBehavior", 500.0f);
+	EnemyBehavior* behavior = new EnemyBehavior("EnemyCyanBehavior", 700.0f);
 	this->attachComponent(behavior);
 	behavior->configure(1.0f);
 

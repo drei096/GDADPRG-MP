@@ -12,6 +12,10 @@ EnemyBehavior::EnemyBehavior(string name, float _MULTIPLIER) : ObjectComponent(n
 
 void EnemyBehavior::perform()
 {
+	
+	//this->movementType = Side;
+	
+
 	this->ticks += this->deltaTime.asSeconds();
 	sf::Transformable* transformable = this->getOwner()->getTransformable();
 
@@ -22,12 +26,34 @@ void EnemyBehavior::perform()
 	}*/
 
 	if (this->movementType == Forward) {
+
 		transformable->move(0, this->deltaTime.asSeconds() * SPEED_MULTIPLIER);
 		
 		//check if position is out of bounds, we can delete/return to pool
 		if (transformable->getPosition().y > Game::WINDOW_HEIGHT) {
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CYAN_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+		}
+
+		
+		if ((int)this->ticks % 5 == 0 && (int)this->ticks != 0)
+		{
+			//cout << "true" << endl;
+			this->movementType = Side;
+		}
+		
+	}
+
+	if (this->movementType == Side)
+	{
+		if (transformable->getPosition().x < 0)
+		{
+			transformable->move(this->deltaTime.asSeconds() * SPEED_MULTIPLIER, 0);
+		}
+
+		if (transformable->getPosition().x >= 60)
+		{
+			this->movementType = Forward;
 		}
 	}
 

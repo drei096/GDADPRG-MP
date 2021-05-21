@@ -3,7 +3,7 @@
 class EnemyBehavior : public ObjectComponent
 {
 public:
-	enum EnemyMovementType { Delay = 0, Forward = 1, SlowForward = 2, Side = 3 };
+	enum EnemyMovementType { Delay = 0, Forward = 1, Side = 2, SlowForward = 3 };
 
 	EnemyBehavior(string name, float _MULTIPLIER);
 	void perform();

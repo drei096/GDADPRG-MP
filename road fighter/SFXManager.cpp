@@ -28,6 +28,7 @@ void SFXManager::loadAllSFX() {
 	loadSFX("explode", "Media/Sounds/SFX/explode.wav");
 	loadSFX("glassbreak", "Media/Sounds/SFX/glass_break.wav");
 	loadSFX("beep", "Media/Sounds/SFX/beep.ogg");
+	loadSFX("coin", "Media/Sounds/SFX/coin1.wav");
 
 }
 
