@@ -11,6 +11,7 @@ public:
 	int collisions = 0;
 	int speedCollision = 0;
 	bool isCollidedFuel = false;
+	bool hasPassedACar = false;
 
 private:
 	const float SPEED_MULTIPLIER = 300.0f; //temp, might change

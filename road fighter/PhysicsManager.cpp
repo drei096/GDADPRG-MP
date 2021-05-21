@@ -85,11 +85,14 @@ void PhysicsManager::perform()
 		sharedInstance->playerObject[0]->setAlreadyCollided(sharedInstance->playerObject[0]->willCollide(sharedInstance->enemyCarObjects[x]));
 		//cout << sharedInstance->trackedObjects[0]->getName() << endl;
 
+		//FORMER SNIPPET FOR SCORE UPDATER
 		/*
-		if (player->getTransformable()->getPosition().y > sharedInstance->enemyCarObjects[x]->getOwner()->getTransformable()->getPosition().y)
+		if (sharedInstance->playerObject[0]->getGlobalBounds().top < sharedInstance->enemyCarObjects[x]->getGlobalBounds().top)
 		{
-			levelOverlay->score = levelOverlay->score + 50;
-			textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
+			//cout << "overtake" << endl;
+			player->hasPassedACar = true;
+			//levelOverlay->score = levelOverlay->score + 50;
+			//textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
 		}
 		*/
 
