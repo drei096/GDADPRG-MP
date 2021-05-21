@@ -9,5 +9,6 @@ public:
 	void perform();
 	float ticks = 0;
 	float lowFuel = 0;
+	float currfuel = 100;
 };
 

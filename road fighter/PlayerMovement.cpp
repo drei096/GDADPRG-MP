@@ -12,6 +12,8 @@
 #include "Game.h"
 #include "SFXManager.h"
 #include <iostream>
+#include "UIText.h"
+#include "LevelOverlay.h"
 
 PlayerMovement::PlayerMovement(string name) : ObjectComponent(name, Script)
 {
@@ -28,6 +30,9 @@ void PlayerMovement::perform()
 	Transformable* playerTransformable = this->getOwner()->getTransformable();
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	PlayerCar* playerCar = (PlayerCar*)this->getOwner();
+	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
+	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
+	EnemyCar* redCar = (EnemyCar*)GameObjectManager::getInstance()->findObjectByName("enemy");
 
 	if (playerTransformable == NULL || inputController == NULL) 
 	{
@@ -40,6 +45,14 @@ void PlayerMovement::perform()
 	if (inputController->isSecondGear()) 
 	{
 		bgMove->SPEED_MULTIPLIER += this->SPEED_MULTIPLIER * deltaTime.asSeconds();
+
+		/*
+		if (playerTransformable->getPosition().y < redCar->getTransformable()->getPosition().y - 50)
+		{
+			levelOverlay->score += 50;
+			textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
+		}
+		*/
 
 		if (bgMove->SPEED_MULTIPLIER >= 1000.0f) {
 			bgMove->SPEED_MULTIPLIER = 1000.0f;

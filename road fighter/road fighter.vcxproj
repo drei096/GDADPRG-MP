@@ -60,6 +60,8 @@
     <ClCompile Include="PlayerCar.cpp" />
     <ClCompile Include="PlayerInputController.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
+    <ClCompile Include="Pothole.cpp" />
+    <ClCompile Include="PotholeClone.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="ProgressCar.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -115,6 +117,8 @@
     <ClInclude Include="PlayerCar.h" />
     <ClInclude Include="PlayerInputController.h" />
     <ClInclude Include="PlayerMovement.h" />
+    <ClInclude Include="Pothole.h" />
+    <ClInclude Include="PotholeClone.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="ProgressCar.h" />
     <ClInclude Include="Renderer.h" />

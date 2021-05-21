@@ -33,6 +33,13 @@ void ScoreTextUpdater::perform()
 	//cout << collisionCount << endl;
 	//cout << carProgress->laps << endl;
 
+	/*
+	if (player->getTransformable()->getPosition().y < redCar->getTransformable()->getPosition().y)
+	{
+		levelOverlay->score += 50;
+	}
+	*/
+
 	int laps = carProgress->laps;
 
 	levelOverlay->score = (laps - 1) * 50;

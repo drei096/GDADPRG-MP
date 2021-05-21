@@ -77,14 +77,22 @@ void PhysicsManager::perform()
 {
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
-	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
-	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
+	
 	//cout << sharedInstance->playerObject[0]->getName() << endl;
 
 	for (int x = 0; x < sharedInstance->enemyCarObjects.size(); x++)
 	{
 		sharedInstance->playerObject[0]->setAlreadyCollided(sharedInstance->playerObject[0]->willCollide(sharedInstance->enemyCarObjects[x]));
 		//cout << sharedInstance->trackedObjects[0]->getName() << endl;
+
+		/*
+		if (player->getTransformable()->getPosition().y > sharedInstance->enemyCarObjects[x]->getOwner()->getTransformable()->getPosition().y)
+		{
+			levelOverlay->score = levelOverlay->score + 50;
+			textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
+		}
+		*/
+
 		if (sharedInstance->playerObject[0]->alreadyCollided() && (!sharedInstance->playerObject[0]->isChecked() && !sharedInstance->enemyCarObjects[x]->isChecked()))
 		{
 			sharedInstance->playerObject[0]->setChecked(true);
@@ -136,19 +144,30 @@ void PhysicsManager::perform()
 	
 	for (int x = 0; x < sharedInstance->fuelCarObjects.size(); x++)
 	{
-		//sharedInstance->playerObject[0]->setAlreadyCollided(sharedInstance->playerObject[0]->willCollide(sharedInstance->fuelCarObjects[x]));
+		sharedInstance->playerObject[0]->setAlreadyCollided(sharedInstance->playerObject[0]->willCollide(sharedInstance->fuelCarObjects[x]));
 		//cout << sharedInstance->trackedObjects[0]->getName() << endl;
-		if (sharedInstance->playerObject[0]->willCollide(sharedInstance->fuelCarObjects[x]) == true)
+		if (sharedInstance->playerObject[0]->alreadyCollided() && (!sharedInstance->playerObject[0]->isChecked() && !sharedInstance->fuelCarObjects[x]->isChecked()))
 		{
-			//sharedInstance->playerObject[0]->setChecked(true);
-			//sharedInstance->fuelCarObjects[x]->setChecked(true);			
+			sharedInstance->playerObject[0]->setChecked(true);
+			sharedInstance->fuelCarObjects[x]->setChecked(true);			
 			SFXManager::getInstance()->getSFX("coin")->play();
-
+			
+			//DI KO SIYA MAPADISAPPEAR HAHAHAHAHA
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+
+			player->isCollidedFuel = true;
+
+			
 
 			//cout << "player collisions: " << player->collisions << endl;
 
 			//cout << "Collide!" << endl;
+		}
+		else if (!sharedInstance->playerObject[0]->alreadyCollided() && (sharedInstance->playerObject[0]->isChecked() && sharedInstance->fuelCarObjects[x]->isChecked()))
+		{
+			sharedInstance->playerObject[0]->setChecked(false);
+			sharedInstance->fuelCarObjects[x]->setChecked(false);
 		}
 		
 	}

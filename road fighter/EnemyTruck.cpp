@@ -26,7 +26,7 @@ void EnemyTruck::initialize()
 	sprite->setOrigin(44 / 2, 84 / 2);
 	sprite->setScale(0.5, 0.5);
 
-	this->setPosition((rand()%(Game::WINDOW_WIDTH / 2) - 25), Game::WINDOW_HEIGHT);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, 200);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);

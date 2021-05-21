@@ -21,6 +21,8 @@
 #include "EnemyTruckClone.h"
 #include "FuelCar.h"
 #include "FuelCarClone.h"
+#include "Pothole.h"
+#include "PotholeClone.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -80,11 +82,15 @@ void Level1PlayScene::onLoadObjects()
 	truckEnemiesManager->attachComponent(TSwarmHandler);
 	this->registerObject(truckEnemiesManager);
 	
-
 	EmptyGameObject* fuelEnemiesManager = new EmptyGameObject("fuelEnemiesManager");
 	FuelCarClone* FSwarmHandler = new FuelCarClone(10, "FSwarmHandler");
 	fuelEnemiesManager->attachComponent(FSwarmHandler);
 	this->registerObject(fuelEnemiesManager);
+
+	EmptyGameObject* potholeManager = new EmptyGameObject("potholeManager");
+	PotholeClone* PSwarmHandler = new PotholeClone(10, "PSwarmHandler");
+	potholeManager->attachComponent(PSwarmHandler);
+	this->registerObject(potholeManager);
 
 	PhysicsManager::initialize("PlayerP6", player);
 	PhysicsManager::initialize("EnemyCarP6", enemiesManager);

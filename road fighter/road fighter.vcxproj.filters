@@ -228,6 +228,12 @@
     <ClCompile Include="FuelCarClone.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Pothole.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="PotholeClone.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -387,6 +393,12 @@
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="FuelCarClone.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Pothole.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="PotholeClone.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

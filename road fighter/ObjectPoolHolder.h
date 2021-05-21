@@ -15,6 +15,7 @@ public:
 	static string ENEMY_YELLOW_CAR_POOL_TAG;
 	static string ENEMY_TRUCK_POOL_TAG;
 	static string ENEMY_FUEL_POOL_TAG;
+	static string POTHOLE_POOL_TAG;
 
 	static ObjectPoolHolder* getInstance();
 

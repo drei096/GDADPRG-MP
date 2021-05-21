@@ -3,6 +3,11 @@
 #include <iostream>
 #include "Game.h";
 #include "ObjectPoolHolder.h"
+#include "PlayerCar.h"
+#include "PlayerInputController.h"
+#include "GameObjectManager.h"
+#include "UIText.h"
+#include "LevelOverlay.h"
 
 EnemyBehavior::EnemyBehavior(string name, float _MULTIPLIER) : ObjectComponent(name, Script)
 {
@@ -12,7 +17,11 @@ EnemyBehavior::EnemyBehavior(string name, float _MULTIPLIER) : ObjectComponent(n
 
 void EnemyBehavior::perform()
 {
-	
+	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
+	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
+	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
+	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
+
 	//this->movementType = Side;
 	
 
@@ -27,12 +36,24 @@ void EnemyBehavior::perform()
 
 	if (this->movementType == Forward) {
 
-		transformable->move(0, this->deltaTime.asSeconds() * SPEED_MULTIPLIER);
-		
+		if (inputController->isFirstGear() || inputController->isSecondGear())
+		{
+			transformable->move(0, this->deltaTime.asSeconds() * SPEED_MULTIPLIER);
+		}
+		else
+		{
+			transformable->move(0, this->deltaTime.asSeconds() * -SPEED_MULTIPLIER * 0.8);
+		}
+
+
 		//check if position is out of bounds, we can delete/return to pool
-		if (transformable->getPosition().y > Game::WINDOW_HEIGHT) {
+		if (transformable->getPosition().y > Game::WINDOW_HEIGHT || transformable->getPosition().y < 0) {
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CYAN_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_TRUCK_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_YELLOW_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::POTHOLE_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 		}
 
 		

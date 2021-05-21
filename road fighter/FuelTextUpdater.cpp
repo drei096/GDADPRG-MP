@@ -12,6 +12,7 @@
 #include "PlayerInputController.h"
 #include "NoFuelScreen.h"
 #include "SFXManager.h"
+#include "PhysicsManager.h"
 
 FuelTextUpdater::FuelTextUpdater(string name) : ObjectComponent(name, Script)
 {
@@ -40,7 +41,21 @@ void FuelTextUpdater::perform()
 
 	this->ticks += this->deltaTime.asSeconds() * 1.5;
 
-	levelOverlay->fuel = 100 - this->ticks - player->collisions; //slowed down the decrease rate of fuel
+	 //slowed down the decrease rate of fuel
+
+	if (player->isCollidedFuel)
+	{
+		//this->ticks = 0;
+		currfuel += 10;
+		player->isCollidedFuel = false;
+	}
+	else
+	{
+		levelOverlay->fuel = currfuel - this->ticks - player->collisions;
+	}
+
+	if (levelOverlay->fuel >= 100)
+		levelOverlay->fuel = 100;
 
 	fuelScore->setText("FUEL \n" + (to_string)(levelOverlay->fuel));
 
@@ -58,6 +73,6 @@ void FuelTextUpdater::perform()
 		GameObjectManager::getInstance()->addObject(noFuelScreen);
 	}
 
-	
+	player->isCollidedFuel = false;
 
 }

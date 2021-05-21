@@ -25,7 +25,7 @@ void EnemyYellowCar::initialize()
 	sprite->setOrigin(300 / 2, 340 / 2);
 	sprite->setScale(0.1, 0.1);
 
-	this->setPosition((rand()%(Game::WINDOW_WIDTH / 2) - 25), Game::WINDOW_HEIGHT);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, 250);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);

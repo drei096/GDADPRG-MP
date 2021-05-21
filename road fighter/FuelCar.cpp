@@ -25,7 +25,7 @@ void FuelCar::initialize()
 	sprite->setOrigin(300 / 2, 340 / 2);
 	sprite->setScale(0.1, 0.1);
 
-	this->setPosition((rand()%(Game::WINDOW_WIDTH / 2) - 25), Game::WINDOW_HEIGHT);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, Game::WINDOW_HEIGHT);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
@@ -41,9 +41,9 @@ void FuelCar::initialize()
 	behavior->configure(1.0f);
 
 
-	Collider* collide = new Collider("EnemyCollide", sprite, Collider::ObjectType::Fuel);
-	this->attachComponent(collide);
-	PhysicsManager::getInstance()->trackObject(collide);
+	Collider* fcollide = new Collider("FuelCollide", sprite, Collider::ObjectType::Fuel);
+	this->attachComponent(fcollide);
+	PhysicsManager::getInstance()->trackObject(fcollide);
 }
 
 void FuelCar::onRelease()
