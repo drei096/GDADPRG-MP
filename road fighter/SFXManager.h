@@ -12,6 +12,9 @@ public:
     void loadAllSFX();
     Sound* getSFX(string);
 
+    void play(string key);
+    void setVolume(string key, int volume);
+
 private:
     SFXManager() {};
     SFXManager(SFXManager const&) {};

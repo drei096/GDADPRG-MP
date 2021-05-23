@@ -31,7 +31,6 @@ void EnemyCarClone::perform()
 		if (this->ticks > SPAWN_INTERVAL) {
 			this->ticks = 0.0f;
 			enemyPool->requestPoolable();
-
 		}
 	}
 	

@@ -9,8 +9,9 @@
 #include "ShortTimeCollisions.h"
 #include "Collider.h"
 
-PlayerCar::PlayerCar(string name) : GameObject(name)
+PlayerCar::PlayerCar(string name, int enemyCount) : GameObject(name)
 {
+	this->totalEnemies = enemyCount;
 }
 
 void PlayerCar::initialize()

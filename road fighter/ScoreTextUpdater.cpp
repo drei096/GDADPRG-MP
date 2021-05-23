@@ -46,6 +46,12 @@ void ScoreTextUpdater::perform()
 
 	//levelOverlay->score = (laps - 1) * 50;
 
+	levelOverlay->score = (player->passedCar * 50) - (player->totalEnemies * 50);
+
+	if (levelOverlay->score <= 0)
+		levelOverlay->score = 0;
+
+	/*
 	if (player->hasPassedACar == true)
 	{
 		levelOverlay->score += 50;
@@ -55,6 +61,7 @@ void ScoreTextUpdater::perform()
 	{
 		levelOverlay->score += 0;
 	}
+	*/
 
 
 	textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));

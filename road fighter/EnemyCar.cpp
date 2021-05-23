@@ -26,7 +26,7 @@ void EnemyCar::initialize()
 	sprite->setOrigin(300 / 2, 340 / 2);
 	sprite->setScale(0.1, 0.1);
 
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, 300);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, 250);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1) , 0);
@@ -56,7 +56,7 @@ void EnemyCar::onRelease()
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
 	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % (int)2.0) + 1.0)) * ((sign > 0) ? -1 : 1), 0);
+	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 }
 
 void EnemyCar::onActivate()
@@ -67,7 +67,7 @@ void EnemyCar::onActivate()
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
 	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % (int)2.0) + 1.0)) * ((sign > 0) ? -1 : 1), 0);
+	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 }
 
 ObjectPoolable* EnemyCar::clone()

@@ -23,7 +23,7 @@ LevelOverlay::~LevelOverlay()
 
 void LevelOverlay::initialize()
 {
-	SFXManager::getInstance()->getSFX("levelBGM")->play();
+	SFXManager::getInstance()->play("levelBGM");
 	/*
 	Sprite* sprite2 = new Sprite();
 	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));

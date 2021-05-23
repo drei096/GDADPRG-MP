@@ -5,11 +5,13 @@
 class PlayerCar : public GameObject
 {
 public:
-	PlayerCar(string name);
+	PlayerCar(string name, int enemyCount);
 	void initialize();
 
 	int collisions = 0;
 	int speedCollision = 0;
+	int passedCar = 0;
+	int totalEnemies = 0;
 	bool isCollidedFuel = false;
 	bool hasPassedACar = false;
 

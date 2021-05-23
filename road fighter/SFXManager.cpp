@@ -49,3 +49,14 @@ sf::Sound* SFXManager::getSFX(std::string key) {
 		return NULL;
 	}
 }
+
+void SFXManager::play(string key)
+{
+	SFXManager::getInstance()->getSFX(key)->play();
+	SFXManager::getInstance()->setVolume(key, 50);
+}
+
+void SFXManager::setVolume(string key, int volume)
+{
+	SFXManager::getInstance()->getSFX(key)->setVolume(volume);
+}

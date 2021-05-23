@@ -21,7 +21,8 @@ MainMenu::~MainMenu()
 
 void MainMenu::initialize()
 {
-	SFXManager::getInstance()->getSFX("menuBGM")->play();
+	SFXManager::getInstance()->play("menuBGM");
+	SFXManager::getInstance()->setVolume("menuBGM", 75);
 
 	Sprite* sprite2 = new Sprite();
 	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));
