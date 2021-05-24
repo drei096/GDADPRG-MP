@@ -83,15 +83,16 @@ void Level1PlayScene::onLoadObjects()
 	truckEnemiesManager->attachComponent(TSwarmHandler);
 	this->registerObject(truckEnemiesManager);
 
-	PlayerCar* player = new PlayerCar("player", 36);
+	PlayerCar* player = new PlayerCar("player", 40);
 	this->registerObject(player);
 
-	/*
 	EmptyGameObject* fuelEnemiesManager = new EmptyGameObject("fuelEnemiesManager");
 	FuelCarClone* FSwarmHandler = new FuelCarClone(10, "FSwarmHandler");
 	fuelEnemiesManager->attachComponent(FSwarmHandler);
 	this->registerObject(fuelEnemiesManager);
 
+
+	/*
 	EmptyGameObject* potholeManager = new EmptyGameObject("potholeManager");
 	PotholeClone* PSwarmHandler = new PotholeClone(10, "PSwarmHandler");
 	potholeManager->attachComponent(PSwarmHandler);
@@ -99,7 +100,7 @@ void Level1PlayScene::onLoadObjects()
 	*/
 
 	PhysicsManager::initialize("PlayerP6", player);
-	PhysicsManager::initialize("EnemyCarP6", enemiesManager);
+	//PhysicsManager::initialize("EnemyCarP6", enemiesManager);
 	//PhysicsManager::initialize("CyanEnemyCarP6", cyanEnemiesManager);
 }
 

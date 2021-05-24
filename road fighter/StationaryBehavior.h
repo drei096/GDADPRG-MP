@@ -1,11 +1,11 @@
 #pragma once
 #include "ObjectComponent.h"
-class SmartEnemyBehavior : public ObjectComponent
+class StationaryBehavior : public ObjectComponent
 {
 public:
 	enum EnemyMovementType { Delay = 0, Forward = 1, Side = 2, SlowForward = 3 };
 
-	SmartEnemyBehavior(string name, float _MULTIPLIER);
+	StationaryBehavior(string name, float _MULTIPLIER);
 	void perform();
 	void configure(float delay);
 	void reset();

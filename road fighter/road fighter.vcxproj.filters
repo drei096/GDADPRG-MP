@@ -67,6 +67,24 @@
     <Filter Include="Source Files\LevelUI">
       <UniqueIdentifier>{911c1a53-113d-4c55-b57f-e03d67ac534e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Enemy\Clones">
+      <UniqueIdentifier>{56114219-c196-4783-89c9-5805ecbb92a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemy\Entities">
+      <UniqueIdentifier>{c894ad5c-fa36-49e5-8ecd-3a1885110138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemy\Behaviors">
+      <UniqueIdentifier>{61a12fa6-5540-4151-8905-43af16e1fd5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemy\Clones">
+      <UniqueIdentifier>{48902916-474b-4118-a996-df3a213eb422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemy\Entities">
+      <UniqueIdentifier>{b2e5625b-95b4-4928-a068-27256263a245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemy\Behaviors">
+      <UniqueIdentifier>{d1f8076c-6f78-4326-996c-8b6cd88bb010}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -138,9 +156,6 @@
     <ClCompile Include="MainMenuScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyCar.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectPoolable.cpp">
       <Filter>Source Files\ObjectPool</Filter>
     </ClCompile>
@@ -149,12 +164,6 @@
     </ClCompile>
     <ClCompile Include="ObjectPoolHolder.cpp">
       <Filter>Source Files\ObjectPool</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBehavior.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyCarClone.cpp">
-      <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EmptyGameObject.cpp">
       <Filter>Source Files</Filter>
@@ -195,12 +204,6 @@
     <ClCompile Include="NoFuelScreen.cpp">
       <Filter>Source Files\LevelUI</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyCyanCar.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyCyanCarClone.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="ShortTimeCollisions.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
@@ -210,32 +213,50 @@
     <ClCompile Include="SFXManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyYellowCar.cpp">
-      <Filter>Source Files\Enemy</Filter>
+    <ClCompile Include="EnemyCarClone.cpp">
+      <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyYellowCarClone.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyTruck.cpp">
-      <Filter>Source Files\Enemy</Filter>
+    <ClCompile Include="EnemyCyanCarClone.cpp">
+      <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
     <ClCompile Include="EnemyTruckClone.cpp">
-      <Filter>Source Files\Enemy</Filter>
+      <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
-    <ClCompile Include="FuelCar.cpp">
-      <Filter>Source Files\Enemy</Filter>
+    <ClCompile Include="EnemyYellowCarClone.cpp">
+      <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
     <ClCompile Include="FuelCarClone.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Pothole.cpp">
-      <Filter>Source Files\Enemy</Filter>
+      <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
     <ClCompile Include="PotholeClone.cpp">
-      <Filter>Source Files\Enemy</Filter>
+      <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
-    <ClCompile Include="SmartEnemyBehavior.cpp">
-      <Filter>Source Files\Enemy</Filter>
+    <ClCompile Include="EnemyCar.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCyanCar.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTruck.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyYellowCar.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="FuelCar.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Pothole.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBehavior.cpp">
+      <Filter>Source Files\Enemy\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalEnemyBehavior.cpp">
+      <Filter>Source Files\Enemy\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="StationaryBehavior.cpp">
+      <Filter>Source Files\Enemy\Behaviors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,15 +301,6 @@
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBehavior.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyCar.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyCarClone.h">
-      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPoolable.h">
       <Filter>Header Files\ObjectPool</Filter>
@@ -365,12 +377,6 @@
     <ClInclude Include="NoFuelScreen.h">
       <Filter>Header Files\LevelUI</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyCyanCar.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyCyanCarClone.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="ShortTimeCollisions.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
@@ -380,32 +386,50 @@
     <ClInclude Include="SFXManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyYellowCar.h">
-      <Filter>Header Files\Enemy</Filter>
+    <ClInclude Include="EnemyCarClone.h">
+      <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyYellowCarClone.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyTruck.h">
-      <Filter>Header Files\Enemy</Filter>
+    <ClInclude Include="EnemyCyanCarClone.h">
+      <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
     <ClInclude Include="EnemyTruckClone.h">
-      <Filter>Header Files\Enemy</Filter>
+      <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
-    <ClInclude Include="FuelCar.h">
-      <Filter>Header Files\Enemy</Filter>
+    <ClInclude Include="EnemyYellowCarClone.h">
+      <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
     <ClInclude Include="FuelCarClone.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Pothole.h">
-      <Filter>Header Files\Enemy</Filter>
+      <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
     <ClInclude Include="PotholeClone.h">
-      <Filter>Header Files\Enemy</Filter>
+      <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
-    <ClInclude Include="SmartEnemyBehavior.h">
-      <Filter>Header Files\Enemy</Filter>
+    <ClInclude Include="EnemyCar.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTruck.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyYellowCar.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Pothole.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="FuelCar.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBehavior.h">
+      <Filter>Header Files\Enemy\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalEnemyBehavior.h">
+      <Filter>Header Files\Enemy\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="StationaryBehavior.h">
+      <Filter>Header Files\Enemy\Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCyanCar.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

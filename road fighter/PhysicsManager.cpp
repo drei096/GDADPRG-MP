@@ -157,7 +157,6 @@ void PhysicsManager::perform()
 			
 			//DI KO SIYA MAPADISAPPEAR HAHAHAHAHA
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
-			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 
 			player->isCollidedFuel = true;
 

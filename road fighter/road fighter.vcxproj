@@ -70,7 +70,8 @@
     <ClCompile Include="ScoreTextUpdater.cpp" />
     <ClCompile Include="SFXManager.cpp" />
     <ClCompile Include="ShortTimeCollisions.cpp" />
-    <ClCompile Include="SmartEnemyBehavior.cpp" />
+    <ClCompile Include="NormalEnemyBehavior.cpp" />
+    <ClCompile Include="StationaryBehavior.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIButtonInputController.cpp" />
@@ -128,7 +129,8 @@
     <ClInclude Include="ScoreTextUpdater.h" />
     <ClInclude Include="SFXManager.h" />
     <ClInclude Include="ShortTimeCollisions.h" />
-    <ClInclude Include="SmartEnemyBehavior.h" />
+    <ClInclude Include="NormalEnemyBehavior.h" />
+    <ClInclude Include="StationaryBehavior.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIButtonInputController.h" />

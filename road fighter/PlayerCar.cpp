@@ -22,7 +22,7 @@ void PlayerCar::initialize()
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("player"));
 	Vector2u textureSize = sprite->getTexture()->getSize();
 	sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
-	sprite->setScale(0.5, 0.5);
+	sprite->setScale(0.6, 0.6);
 	this->transformable.setPosition((Game::WINDOW_WIDTH / 2) - 25, (Game::WINDOW_HEIGHT / 2) + 100);
 
 	PlayerInputController* playerInput = new PlayerInputController("playerInput");

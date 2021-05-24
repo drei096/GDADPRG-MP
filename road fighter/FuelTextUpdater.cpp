@@ -46,7 +46,7 @@ void FuelTextUpdater::perform()
 	if (player->isCollidedFuel)
 	{
 		//this->ticks = 0;
-		currfuel += 10;
+		this->currfuel += 10;
 		player->isCollidedFuel = false;
 	}
 	else

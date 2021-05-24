@@ -19,14 +19,14 @@ public:
 
 	string getTag();
 
+	ObjectList availableObjects;
+	ObjectList usedObjects;
 
 private:
 	string tag;
 	ObjectPoolable* objectCopy = NULL;
 	GameObject* parent = NULL;
 	int maxPoolSize = 20; //default;
-	ObjectList availableObjects;
-	ObjectList usedObjects;
 
 	void setEnabled(ObjectPoolable* poolableObject, bool flag);
 };

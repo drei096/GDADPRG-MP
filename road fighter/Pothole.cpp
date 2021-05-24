@@ -26,7 +26,7 @@ void Pothole::initialize()
 	sprite->setOrigin(64 / 2, 64 / 2);
 	sprite->setScale(0.4, 0.4);
 
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 20, -30);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 20, Game::WINDOW_HEIGHT * 5);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) , 0);
@@ -38,9 +38,9 @@ void Pothole::initialize()
 	this->attachComponent(renderer);
 
 
-	EnemyBehavior* behavior = new EnemyBehavior("PotholeBehavior", 500.0f);
+	EnemyBehavior* behavior = new EnemyBehavior("PotholeBehavior", 400.0f);
 	this->attachComponent(behavior);
-	behavior->configure(1.0f);
+	//behavior->configure(1.0f);
 
 
 	Collider* collide = new Collider("PotholeCollide", sprite, Collider::ObjectType::EnemyCar);

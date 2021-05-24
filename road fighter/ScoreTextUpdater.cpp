@@ -45,6 +45,12 @@ void ScoreTextUpdater::perform()
 	//int laps = carProgress->laps;
 
 	//levelOverlay->score = (laps - 1) * 50;
+	if (player->isCollidedFuel)
+	{
+		//this->ticks = 0;
+		levelOverlay->score += 1000;
+		player->isCollidedFuel = false;
+	}
 
 	levelOverlay->score = (player->passedCar * 50) - (player->totalEnemies * 50);
 

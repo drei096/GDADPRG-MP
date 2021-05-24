@@ -5,6 +5,7 @@
 #include "PlayerCar.h"
 #include "PlayerInputController.h"
 #include "GameObjectManager.h"
+#include "BGMovement.h"
 
 PotholeClone::PotholeClone(int numEnemies, string name) : ObjectComponent(name, Script)
 {
@@ -21,8 +22,9 @@ void PotholeClone::perform()
 {
 	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
-	if (inputController->isFirstGear() || inputController->isSecondGear())
+	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100) * 30)
 	{
 		GameObjectPool* potholePool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::POTHOLE_POOL_TAG);
 		this->ticks += this->deltaTime.asSeconds();

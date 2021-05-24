@@ -58,17 +58,19 @@ void EnemyBehavior::perform()
 		}
 
 		//check if position is out of bounds, we can delete/return to pool
+		/*
 		if (transformable->getPosition().y > Game::WINDOW_HEIGHT || transformable->getPosition().y < 0) {
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CYAN_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
-			/*
+			
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
-			*/
+			
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_TRUCK_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_YELLOW_CAR_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 			//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::POTHOLE_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
 			
 		}
+		*/
 		
 		//IF GOING TO SIDE OR NOT
 		if (this->ticks >= 0.5f && !this->isMoved && this->goSide)
