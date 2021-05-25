@@ -44,7 +44,7 @@ void Level3PlayScene::onLoadResources()
 void Level3PlayScene::onLoadObjects()
 {
 
-	BG* bg = new BG("BG", 150000.0f, "bg3", 3);
+	BG* bg = new BG("BG", 140000.0f, "bg3", 3);
 	this->registerObject(bg);
 
 	LevelOverlay* levelOverlay = new LevelOverlay("levelOverlay");

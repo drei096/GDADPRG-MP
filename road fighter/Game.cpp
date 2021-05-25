@@ -15,7 +15,7 @@
 #include "Level3PlayScene.h"
 
 
-Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road Fighter")
+Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Philippines Traffic Simulator")
 {
     TextureManager::getInstance()->loadAllTextures();
     FontManager::getInstance()->loadAll();
