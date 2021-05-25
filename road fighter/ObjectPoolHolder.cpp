@@ -6,6 +6,7 @@ string ObjectPoolHolder::ENEMY_TRUCK_POOL_TAG = "EnemyTruckPool";
 string ObjectPoolHolder::ENEMY_YELLOW_CAR_POOL_TAG = "EnemyYellowCarPool";
 string ObjectPoolHolder::ENEMY_FUEL_POOL_TAG = "EnemyFuelCarPool";
 string ObjectPoolHolder::POTHOLE_POOL_TAG = "PotholePool";
+string ObjectPoolHolder::OIL_POOL_TAG = "OilPool";
 
 ObjectPoolHolder* ObjectPoolHolder::sharedInstance = NULL;
 

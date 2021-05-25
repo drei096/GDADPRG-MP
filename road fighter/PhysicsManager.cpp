@@ -52,18 +52,17 @@ void PhysicsManager::trackObject(Collider* object)
 void PhysicsManager::untrackObject(Collider* object)
 {
 	/*
-	delete object;
 	if (object->type == Collider::ObjectType::Player) {
-		this->playerObject.erase(std::remove(playerObject.begin(), playerObject.end(), object), playerObject.end());
-		this->playerObject.shrink_to_fit();
+		sharedInstance->playerObject.erase(std::remove(playerObject.begin(), playerObject.end(), object), playerObject.end());
+		sharedInstance->playerObject.shrink_to_fit();
 	}
-	else if (object->type == Collider::ObjectType::Bullet) {
-		this->bulletObjects.erase(std::remove(bulletObjects.begin(), bulletObjects.end(), object), bulletObjects.end());
-		this->bulletObjects.shrink_to_fit();
+	else if (object->type == Collider::ObjectType::EnemyCar) {
+		sharedInstance->enemyCarObjects.erase(std::remove(enemyCarObjects.begin(), enemyCarObjects.end(), object), enemyCarObjects.end());
+		sharedInstance->enemyCarObjects.shrink_to_fit();
 	}
-	else if (object->type == Collider::ObjectType::Enemy) {
-		this->enemyCarObjects.erase(std::remove(enemyCarObjects.begin(), enemyCarObjects.end(), object), enemyCarObjects.end());
-		this->enemyCarObjects.shrink_to_fit();
+	else if (object->type == Collider::ObjectType::Fuel) {
+		sharedInstance->fuelCarObjects.erase(std::remove(fuelCarObjects.begin(), fuelCarObjects.end(), object), fuelCarObjects.end());
+		sharedInstance->fuelCarObjects.shrink_to_fit();
 	}
 	*/
 }
@@ -77,6 +76,7 @@ void PhysicsManager::perform()
 {
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
+	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
 	
 	//cout << sharedInstance->playerObject[0]->getName() << endl;
 
@@ -102,40 +102,45 @@ void PhysicsManager::perform()
 			sharedInstance->enemyCarObjects[x]->setChecked(true);
 			
 
-			SFXManager::getInstance()->getSFX("collide")->play();
 
 			bgMove->SPEED_MULTIPLIER = 200.0f;
 			player->collisions++;
 			player->speedCollision++;
 
-			float yPosHolder = sharedInstance->enemyCarObjects[x]->getGlobalBounds().top + sharedInstance->enemyCarObjects[x]->getGlobalBounds().height;
-			float xPosHolder = sharedInstance->playerObject[0]->getGlobalBounds().left - sharedInstance->playerObject[0]->getGlobalBounds().width;
+			if (sharedInstance->enemyCarObjects[x]->getOwner()->getName() != "oil") {
 
-			if (yPosHolder > sharedInstance->playerObject[0]->getGlobalBounds().top) {
+				SFXManager::getInstance()->getSFX("collide")->play();
 
-				if (sharedInstance->playerObject[0]->getGlobalBounds().left < sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
-					float placeholder = sharedInstance->enemyCarObjects[x]->getGlobalBounds().left - sharedInstance->playerObject[0]->getGlobalBounds().left;
-					player->getTransformable()->move(-placeholder, 0);
+				float yPosHolder = sharedInstance->enemyCarObjects[x]->getGlobalBounds().top + sharedInstance->enemyCarObjects[x]->getGlobalBounds().height;
+				float xPosHolder = sharedInstance->playerObject[0]->getGlobalBounds().left - sharedInstance->playerObject[0]->getGlobalBounds().width;
+
+				if (yPosHolder > sharedInstance->playerObject[0]->getGlobalBounds().top) {
+
+					if (sharedInstance->playerObject[0]->getGlobalBounds().left < sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
+						float placeholder = sharedInstance->enemyCarObjects[x]->getGlobalBounds().left - sharedInstance->playerObject[0]->getGlobalBounds().left;
+						player->getTransformable()->move(-placeholder, 0);
+					}
+					else if (sharedInstance->playerObject[0]->getGlobalBounds().left > xPosHolder || sharedInstance->playerObject[0]->getGlobalBounds().left > sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
+						float placeholder = sharedInstance->playerObject[0]->getGlobalBounds().left - sharedInstance->enemyCarObjects[x]->getGlobalBounds().left;
+						player->getTransformable()->move(placeholder, 0);
+					}
 				}
-				else if (sharedInstance->playerObject[0]->getGlobalBounds().left > xPosHolder || sharedInstance->playerObject[0]->getGlobalBounds().left > sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
-					float placeholder = sharedInstance->playerObject[0]->getGlobalBounds().left - sharedInstance->enemyCarObjects[x]->getGlobalBounds().left;
-					player->getTransformable()->move(placeholder, 0);
+				else {
+					if (sharedInstance->playerObject[0]->getGlobalBounds().left < sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
+						float placeholder = sharedInstance->enemyCarObjects[x]->getGlobalBounds().left - sharedInstance->playerObject[0]->getGlobalBounds().left;
+						player->getTransformable()->move(-placeholder, 0);
+					}
+					else if (sharedInstance->playerObject[0]->getGlobalBounds().left > xPosHolder || sharedInstance->playerObject[0]->getGlobalBounds().left > sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
+						float placeholder = sharedInstance->playerObject[0]->getGlobalBounds().left - sharedInstance->enemyCarObjects[x]->getGlobalBounds().left;
+						player->getTransformable()->move(placeholder, 0);
+					}
 				}
 			}
-			else{
-				if (sharedInstance->playerObject[0]->getGlobalBounds().left < sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
-					float placeholder = sharedInstance->enemyCarObjects[x]->getGlobalBounds().left - sharedInstance->playerObject[0]->getGlobalBounds().left;
-					player->getTransformable()->move(-placeholder, 0);
-				}
-				else if (sharedInstance->playerObject[0]->getGlobalBounds().left > xPosHolder || sharedInstance->playerObject[0]->getGlobalBounds().left > sharedInstance->enemyCarObjects[x]->getGlobalBounds().left) {
-					float placeholder = sharedInstance->playerObject[0]->getGlobalBounds().left - sharedInstance->enemyCarObjects[x]->getGlobalBounds().left;
-					player->getTransformable()->move(placeholder, 0);
-				}
-			}
 
-			cout << "player collisions: " << player->collisions << endl;
+			else {
+				SFXManager::getInstance()->getSFX("skid")->play();
+			}
 			
-			//cout << "Collide!" << endl;
 		}
 		else if (!sharedInstance->playerObject[0]->alreadyCollided() && (sharedInstance->playerObject[0]->isChecked() && sharedInstance->enemyCarObjects[x]->isChecked()))
 		{
@@ -156,9 +161,12 @@ void PhysicsManager::perform()
 			SFXManager::getInstance()->getSFX("coin")->play();
 			
 			//DI KO SIYA MAPADISAPPEAR HAHAHAHAHA
-			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
 
-			player->isCollidedFuel = true;
+			ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->releasePoolable((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
+			//ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG)->removeFromPool((ObjectPoolable*)sharedInstance->fuelCarObjects[x]->getOwner());
+
+
+			player->bonus++;
 
 			
 
@@ -173,7 +181,7 @@ void PhysicsManager::perform()
 		}
 		
 	}
-	
+
 }
 
 void PhysicsManager::cleanUpObjects()
@@ -182,3 +190,4 @@ void PhysicsManager::cleanUpObjects()
 	enemyCarObjects.clear();
 	fuelCarObjects.clear();
 }
+

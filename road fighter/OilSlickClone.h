@@ -8,7 +8,7 @@ public:
 	void perform();
 
 private:
-	const float SPAWN_INTERVAL = 0.05f;
+	const float SPAWN_INTERVAL = 13.0f;
 	float ticks = 0.0f;
 };
 

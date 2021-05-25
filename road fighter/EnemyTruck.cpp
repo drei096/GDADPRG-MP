@@ -6,6 +6,8 @@
 #include "Renderer.h"
 #include "Collider.h"
 #include "PhysicsManager.h"
+#include "BGMovement.h"
+#include "GameObjectManager.h"
 
 
 EnemyTruck::EnemyTruck(string name) : ObjectPoolable(name)
@@ -26,7 +28,7 @@ void EnemyTruck::initialize()
 	sprite->setOrigin(44 / 2, 84 / 2);
 	sprite->setScale(0.6, 0.6);
 
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, Game::WINDOW_HEIGHT * 5);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -Game::WINDOW_HEIGHT * 50);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
@@ -60,11 +62,12 @@ void EnemyTruck::onRelease()
 void EnemyTruck::onActivate()
 {
 	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyTruckBehavior");
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	behavior->reset();
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
-	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
+	float posX = bgMove->laneCheck();
+	this->getTransformable()->move(posX, 0);
 }
 
 ObjectPoolable* EnemyTruck::clone()

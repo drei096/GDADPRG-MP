@@ -36,6 +36,9 @@ void PlayerInputController::perform()
 	case Keyboard::D:
 		this->moveRight = keyDown;
 		break;
+	case Keyboard::Space:
+		this->isHonk = keyDown;
+		break;
 	}
 }
 
@@ -57,4 +60,9 @@ bool PlayerInputController::isLeft()
 bool PlayerInputController::isRight()
 {
 	return this->moveRight;
+}
+
+bool PlayerInputController::Honk()
+{
+	return this->isHonk;
 }

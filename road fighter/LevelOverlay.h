@@ -17,6 +17,7 @@ public:
 	void onButtonReleased(UIButton* button);
 	int score = 0;
 	int fuel = 100;
+	int speed = 0;
 
 };
 

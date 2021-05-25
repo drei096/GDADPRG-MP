@@ -7,9 +7,12 @@
 #include "Collider.h"
 #include "PhysicsManager.h"
 #include "NormalEnemyBehavior.h"
+#include "BGMovement.h"
+#include "GameObjectManager.h"
 
 FuelCar::FuelCar(string name) : ObjectPoolable(name)
 {
+
 }
 
 void FuelCar::initialize()
@@ -26,7 +29,7 @@ void FuelCar::initialize()
 	sprite->setOrigin(300 / 2, 340 / 2);
 	sprite->setScale(0.12, 0.12);
 
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, Game::WINDOW_HEIGHT * 5);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -Game::WINDOW_HEIGHT * 50);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
@@ -45,26 +48,33 @@ void FuelCar::initialize()
 	Collider* fcollide = new Collider("FuelCollide", sprite, Collider::ObjectType::Fuel);
 	this->attachComponent(fcollide);
 	PhysicsManager::getInstance()->trackObject(fcollide);
+
 }
 
 void FuelCar::onRelease()
 {
-	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyFuelBehavior");
+	NormalEnemyBehavior* behavior = (NormalEnemyBehavior*)this->findComponentByName("EnemyFuelBehavior");
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	behavior->reset();
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -Game::WINDOW_HEIGHT * 20);
 	//randomize
 	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
+	float available = (65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1);
+	this->getTransformable()->move(available, 0);
+	this->setEnabled(false);
 }
 
 void FuelCar::onActivate()
 {
-	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("EnemyFuelBehavior");
+	//reset state
+	NormalEnemyBehavior* behavior = (NormalEnemyBehavior*)this->findComponentByName("EnemyFuelBehavior");
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	behavior->reset();
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
-	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
+	float posX = bgMove->laneCheck();
+	this->getTransformable()->move(posX, 0);
+	this->setEnabled(false);
 }
 
 ObjectPoolable* FuelCar::clone()

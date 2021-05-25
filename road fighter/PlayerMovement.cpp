@@ -40,19 +40,25 @@ void PlayerMovement::perform()
 		return;
 	}
 
+
+	if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
+		playerTransformable->setPosition((Game::WINDOW_WIDTH / 2) + 40 , playerTransformable->getPosition().y);
+	}
+
+	if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
+		playerTransformable->setPosition((Game::WINDOW_WIDTH / 2) - 90, playerTransformable->getPosition().y);
+	}
+
 	Vector2f offset(0.0f, 0.0f);
 
 	if (inputController->isSecondGear()) 
 	{
+		if (inputController->Honk()) {
+			SFXManager::getInstance()->getSFX("horn")->play();
+		}
+
 		bgMove->SPEED_MULTIPLIER += this->SPEED_MULTIPLIER * deltaTime.asSeconds();
 
-		/*
-		if (playerTransformable->getPosition().y < redCar->getTransformable()->getPosition().y - 50)
-		{
-			levelOverlay->score += 50;
-			textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
-		}
-		*/
 
 		if (bgMove->SPEED_MULTIPLIER >= 1000.0f) {
 			bgMove->SPEED_MULTIPLIER = 1000.0f;
@@ -107,35 +113,11 @@ void PlayerMovement::perform()
 		}
 	}
 
-	/*
-	else if (inputController->isRight()) 
-	{
-		//this->resetSpeedMultiplier();
-		if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
-			playerTransformable->setPosition(playerTransformable->getPosition());
-		}
-
-		else {
-			offset.x += this->SPEED_MULTIPLIER;
-			playerTransformable->move(offset * deltaTime.asSeconds());
-		}
-	}
-	else if (inputController->isLeft()) 
-	{
-		//this->resetSpeedMultiplier();
-		if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
-			playerTransformable->setPosition(playerTransformable->getPosition());
-		}
-
-		else {
-			offset.x -= this->SPEED_MULTIPLIER;
-			playerTransformable->move(offset * deltaTime.asSeconds());
-		}
-	}
-	*/
-
 	else if (!inputController->isSecondGear())
 	{
+		if (inputController->Honk()) {
+			SFXManager::getInstance()->getSFX("honk")->play();
+		}
 
 		bgMove->SPEED_MULTIPLIER -= this->SPEED_MULTIPLIER * deltaTime.asSeconds() * 2;
 
@@ -148,14 +130,10 @@ void PlayerMovement::perform()
 
 
 		cout << bgMove->SPEED_MULTIPLIER << endl;
-		//cout << offset.x << " " << offset.y << endl;
-		//offset.y -= this->SPEED_MULTIPLIER;
-		//playerTransformable->move(offset * deltaTime.asSeconds());
 
 		if (inputController->isRight())
 		{
 			this->ticks += this->deltaTime.asSeconds();
-			//this->resetSpeedMultiplier();
 			if (playerTransformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
 				playerTransformable->setPosition(playerTransformable->getPosition());
 				if (this->ticks > 0.5f) {
@@ -176,7 +154,6 @@ void PlayerMovement::perform()
 		else if (inputController->isLeft())
 		{
 			this->ticks += this->deltaTime.asSeconds();
-			//this->resetSpeedMultiplier();
 			if (playerTransformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
 				playerTransformable->setPosition(playerTransformable->getPosition());
 				if (this->ticks > 0.5f) {
@@ -195,10 +172,3 @@ void PlayerMovement::perform()
 		}
 	}
 }
-
-/*
-void PlayerMovement::resetSpeedMultiplier()
-{
-	this->SPEED_MULTIPLIER = 300.0f;
-}
-*/

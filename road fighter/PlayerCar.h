@@ -12,6 +12,7 @@ public:
 	int speedCollision = 0;
 	int passedCar = 0;
 	int totalEnemies = 0;
+	int bonus = 0;
 	bool isCollidedFuel = false;
 	bool hasPassedACar = false;
 

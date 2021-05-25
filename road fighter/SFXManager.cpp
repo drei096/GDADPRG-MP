@@ -15,9 +15,9 @@ SFXManager* SFXManager::getInstance() {
 
 void SFXManager::loadAllSFX() {
 	//BGM LOADING
-	loadSFX("menuBGM", "Media/Sounds/BGM/EveryDay.ogg");
+	loadSFX("menuBGM", "Media/Sounds/BGM/speedrun.wav");
 	SFXManager::getInstance()->getSFX("menuBGM")->setLoop(true);
-	loadSFX("levelBGM", "Media/Sounds/BGM/Black-Diamond.ogg");
+	loadSFX("levelBGM", "Media/Sounds/BGM/dubidubidapdap.wav");
 	SFXManager::getInstance()->getSFX("levelBGM")->setLoop(true);
 	loadSFX("gameOverBGM", "Media/Sounds/BGM/designate_patreon.ogg");
 	SFXManager::getInstance()->getSFX("gameOverBGM")->setLoop(true);
@@ -29,7 +29,9 @@ void SFXManager::loadAllSFX() {
 	loadSFX("glassbreak", "Media/Sounds/SFX/glass_break.wav");
 	loadSFX("beep", "Media/Sounds/SFX/beep.ogg");
 	loadSFX("coin", "Media/Sounds/SFX/coin1.wav");
-
+	loadSFX("skid", "Media/Sounds/SFX/skid.wav");
+	loadSFX("loss", "Media/Sounds/SFX/sadloss.wav");
+	loadSFX("horn", "Media/Sounds/SFX/horn.wav");
 }
 
 void SFXManager::loadSFX(string key, string path) {

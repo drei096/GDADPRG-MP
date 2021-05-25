@@ -225,9 +225,6 @@
     <ClCompile Include="EnemyYellowCarClone.cpp">
       <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
-    <ClCompile Include="FuelCarClone.cpp">
-      <Filter>Source Files\Enemy\Clones</Filter>
-    </ClCompile>
     <ClCompile Include="PotholeClone.cpp">
       <Filter>Source Files\Enemy\Clones</Filter>
     </ClCompile>
@@ -243,9 +240,6 @@
     <ClCompile Include="EnemyYellowCar.cpp">
       <Filter>Source Files\Enemy\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="FuelCar.cpp">
-      <Filter>Source Files\Enemy\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Pothole.cpp">
       <Filter>Source Files\Enemy\Entities</Filter>
     </ClCompile>
@@ -257,6 +251,30 @@
     </ClCompile>
     <ClCompile Include="StationaryBehavior.cpp">
       <Filter>Source Files\Enemy\Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="FuelCar.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="FuelCarClone.cpp">
+      <Filter>Source Files\Enemy\Clones</Filter>
+    </ClCompile>
+    <ClCompile Include="OilSlick.cpp">
+      <Filter>Source Files\Enemy\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="OilSlickClone.cpp">
+      <Filter>Source Files\Enemy\Clones</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeedTextUpdater.cpp">
+      <Filter>Source Files\LevelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2PlayScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3PlayScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="QuitPopUp.cpp">
+      <Filter>Source Files\LevelUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,9 +416,6 @@
     <ClInclude Include="EnemyYellowCarClone.h">
       <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
-    <ClInclude Include="FuelCarClone.h">
-      <Filter>Header Files\Enemy\Clones</Filter>
-    </ClInclude>
     <ClInclude Include="PotholeClone.h">
       <Filter>Header Files\Enemy\Clones</Filter>
     </ClInclude>
@@ -416,9 +431,6 @@
     <ClInclude Include="Pothole.h">
       <Filter>Header Files\Enemy\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="FuelCar.h">
-      <Filter>Header Files\Enemy\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyBehavior.h">
       <Filter>Header Files\Enemy\Behaviors</Filter>
     </ClInclude>
@@ -430,6 +442,30 @@
     </ClInclude>
     <ClInclude Include="EnemyCyanCar.h">
       <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="FuelCar.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="FuelCarClone.h">
+      <Filter>Header Files\Enemy\Clones</Filter>
+    </ClInclude>
+    <ClInclude Include="OilSlick.h">
+      <Filter>Header Files\Enemy\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="OilSlickClone.h">
+      <Filter>Header Files\Enemy\Clones</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeedTextUpdater.h">
+      <Filter>Header Files\LevelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2PlayScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3PlayScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="QuitPopUp.h">
+      <Filter>Header Files\LevelUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

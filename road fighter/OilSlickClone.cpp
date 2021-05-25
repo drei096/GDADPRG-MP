@@ -1,4 +1,8 @@
 #include "OilSlickClone.h"
+#include "PlayerCar.h"
+#include "PlayerInputController.h"
+#include "GameObjectManager.h"
+#include "BGMovement.h"
 #include "GameObjectPool.h"
 #include "ObjectPoolHolder.h"
 #include "OilSlick.h"
@@ -16,12 +20,19 @@ OilSlickClone::~OilSlickClone()
 
 void OilSlickClone::perform()
 {
-	GameObjectPool* oilSlickPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::OIL_POOL_TAG);
-	this->ticks += this->deltaTime.asSeconds();
+	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
+	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
-	if (this->ticks > SPAWN_INTERVAL) {
-		this->ticks = 0.0f;
-		oilSlickPool->requestPoolable();
+	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100) * 10)
+	{
+		GameObjectPool* oilPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::OIL_POOL_TAG);
+		this->ticks += this->deltaTime.asSeconds();
 
+		if (this->ticks > SPAWN_INTERVAL) {
+			this->ticks = 0.0f;
+			oilPool->requestPoolable();
+
+		}
 	}
 }

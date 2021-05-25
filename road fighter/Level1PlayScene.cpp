@@ -25,6 +25,8 @@
 #include "PotholeClone.h"
 #include "GameObjectPool.h"
 #include "ObjectPoolHolder.h"
+#include "OilSlick.h"
+#include "OilSlickClone.h"
 
 Level1PlayScene::Level1PlayScene() : Scene(SceneManager::LEVEL1_SCENE_NAME)
 {
@@ -36,19 +38,13 @@ Level1PlayScene::~Level1PlayScene()
 
 void Level1PlayScene::onLoadResources()
 {
-	/*
-	UIText* scoreText = new UIText("score_text");
-	scoreText->setPosition(-70,-80);
-	scoreText->setSize(10);
-	scoreText->setText("1P\n 00000000");
-	*/
 	ApplicationManager::getInstance()->resumeApplication();
 }
 
 void Level1PlayScene::onLoadObjects()
 {
 
-	BG* bg = new BG("BG", 100000.0f);
+	BG* bg = new BG("BG", 70000.0f, "bg1", 1);
 	this->registerObject(bg);
 
 	LevelOverlay* levelOverlay = new LevelOverlay("levelOverlay");
@@ -56,9 +52,6 @@ void Level1PlayScene::onLoadObjects()
 
 	ProgressBar* progress = new ProgressBar("progressBar");
 	this->registerObject(progress);
-
-	//GameObjectManager::getInstance()->addObject(player);
-
 
 	srand(time(NULL));
 	
@@ -83,7 +76,7 @@ void Level1PlayScene::onLoadObjects()
 	truckEnemiesManager->attachComponent(TSwarmHandler);
 	this->registerObject(truckEnemiesManager);
 
-	PlayerCar* player = new PlayerCar("player", 40);
+	PlayerCar* player = new PlayerCar("player", 0);
 	this->registerObject(player);
 
 	EmptyGameObject* fuelEnemiesManager = new EmptyGameObject("fuelEnemiesManager");
@@ -91,32 +84,23 @@ void Level1PlayScene::onLoadObjects()
 	fuelEnemiesManager->attachComponent(FSwarmHandler);
 	this->registerObject(fuelEnemiesManager);
 
-
-	/*
 	EmptyGameObject* potholeManager = new EmptyGameObject("potholeManager");
 	PotholeClone* PSwarmHandler = new PotholeClone(10, "PSwarmHandler");
 	potholeManager->attachComponent(PSwarmHandler);
 	this->registerObject(potholeManager);
-	*/
+
+	EmptyGameObject* oilManager = new EmptyGameObject("oilManager");
+	OilSlickClone* OSwarmHandler = new OilSlickClone(10, "PSwarmHandler");
+	oilManager->attachComponent(OSwarmHandler);
+	this->registerObject(oilManager);
+	
 
 	PhysicsManager::initialize("PlayerP6", player);
-	//PhysicsManager::initialize("EnemyCarP6", enemiesManager);
-	//PhysicsManager::initialize("CyanEnemyCarP6", cyanEnemiesManager);
 }
 
 void Level1PlayScene::onUnloadObjects()
 {
 	PhysicsManager::getInstance()->clearAll();
-	/*
-	GameObjectPool* enemyCar = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG);
-	ObjectPoolHolder::getInstance()->unregisterObjectPool(enemyCar);
-	GameObjectPool* enemyCyanCar = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CYAN_CAR_POOL_TAG);
-	ObjectPoolHolder::getInstance()->unregisterObjectPool(enemyCyanCar);
-	GameObjectPool* enemyYellowCar = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_YELLOW_CAR_POOL_TAG);
-	ObjectPoolHolder::getInstance()->unregisterObjectPool(enemyYellowCar);
-	GameObjectPool* enemyTruckCar = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_TRUCK_POOL_TAG);
-	ObjectPoolHolder::getInstance()->unregisterObjectPool(enemyTruckCar);
-	*/
 	Scene::onUnloadObjects();
 }
 

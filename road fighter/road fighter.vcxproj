@@ -47,6 +47,8 @@
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level1PlayScene.cpp" />
+    <ClCompile Include="Level2PlayScene.cpp" />
+    <ClCompile Include="Level3PlayScene.cpp" />
     <ClCompile Include="LevelOverlay.cpp" />
     <ClCompile Include="LevelOverScreen.cpp" />
     <ClCompile Include="main.cpp" />
@@ -56,6 +58,8 @@
     <ClCompile Include="ObjectComponent.cpp" />
     <ClCompile Include="ObjectPoolable.cpp" />
     <ClCompile Include="ObjectPoolHolder.cpp" />
+    <ClCompile Include="OilSlick.cpp" />
+    <ClCompile Include="OilSlickClone.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlayerCar.cpp" />
     <ClCompile Include="PlayerInputController.cpp" />
@@ -64,6 +68,7 @@
     <ClCompile Include="PotholeClone.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="ProgressCar.cpp" />
+    <ClCompile Include="QuitPopUp.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -71,6 +76,7 @@
     <ClCompile Include="SFXManager.cpp" />
     <ClCompile Include="ShortTimeCollisions.cpp" />
     <ClCompile Include="NormalEnemyBehavior.cpp" />
+    <ClCompile Include="SpeedTextUpdater.cpp" />
     <ClCompile Include="StationaryBehavior.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="UIButton.cpp" />
@@ -107,6 +113,8 @@
     <ClInclude Include="InputController.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level1PlayScene.h" />
+    <ClInclude Include="Level2PlayScene.h" />
+    <ClInclude Include="Level3PlayScene.h" />
     <ClInclude Include="LevelOverlay.h" />
     <ClInclude Include="LevelOverScreen.h" />
     <ClInclude Include="MainMenu.h" />
@@ -115,6 +123,8 @@
     <ClInclude Include="ObjectComponent.h" />
     <ClInclude Include="ObjectPoolable.h" />
     <ClInclude Include="ObjectPoolHolder.h" />
+    <ClInclude Include="OilSlick.h" />
+    <ClInclude Include="OilSlickClone.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PlayerCar.h" />
     <ClInclude Include="PlayerInputController.h" />
@@ -123,6 +133,7 @@
     <ClInclude Include="PotholeClone.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="ProgressCar.h" />
+    <ClInclude Include="QuitPopUp.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
@@ -130,6 +141,7 @@
     <ClInclude Include="SFXManager.h" />
     <ClInclude Include="ShortTimeCollisions.h" />
     <ClInclude Include="NormalEnemyBehavior.h" />
+    <ClInclude Include="SpeedTextUpdater.h" />
     <ClInclude Include="StationaryBehavior.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="UIButton.h" />

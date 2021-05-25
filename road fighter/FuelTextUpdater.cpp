@@ -43,19 +43,11 @@ void FuelTextUpdater::perform()
 
 	 //slowed down the decrease rate of fuel
 
-	if (player->isCollidedFuel)
-	{
-		//this->ticks = 0;
-		this->currfuel += 10;
-		player->isCollidedFuel = false;
-	}
-	else
-	{
-		levelOverlay->fuel = currfuel - this->ticks - player->collisions;
-	}
+	levelOverlay->fuel = currfuel + (player->bonus * 10) - this->ticks - player->collisions;
 
 	if (levelOverlay->fuel >= 100)
 		levelOverlay->fuel = 100;
+
 
 	fuelScore->setText("FUEL \n" + (to_string)(levelOverlay->fuel));
 

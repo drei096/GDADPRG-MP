@@ -10,6 +10,8 @@ public:
 	//scene names
 	static string MAIN_MENU_SCENE_NAME;
 	static string LEVEL1_SCENE_NAME;
+	static string LEVEL2_SCENE_NAME;
+	static string LEVEL3_SCENE_NAME;
 
 	static SceneManager* getInstance();
 	void registerScene(Scene* scene);

@@ -24,7 +24,7 @@ NoFuelScreen::~NoFuelScreen()
 void NoFuelScreen::initialize()
 {
 	SFXManager::getInstance()->getSFX("levelBGM")->stop();
-	SFXManager::getInstance()->getSFX("gameOverBGM")->play();
+	SFXManager::getInstance()->getSFX("loss")->play();
 
 	sf::Sprite* sprite = new sf::Sprite();
 	sprite->setTexture(*TextureManager::getInstance()->getTextureByKey("textBoxSpriteSheet"));

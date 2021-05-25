@@ -24,6 +24,16 @@ void MainMenu::initialize()
 	SFXManager::getInstance()->play("menuBGM");
 	SFXManager::getInstance()->setVolume("menuBGM", 75);
 
+	sf::Sprite* sprite3 = new sf::Sprite();
+	sprite3->setTexture(*TextureManager::getInstance()->getTextureByKey("bgMenu"));
+	sf::Vector2u textureSize3 = sprite3->getTexture()->getSize();
+	sprite3->setOrigin(textureSize3.x / 2, textureSize3.y / 2);
+	sprite3->setPosition(0 , (Game::WINDOW_HEIGHT / 2) - 150);
+
+	Renderer* renderer3 = new Renderer("Menu");
+	renderer3->assignDrawable(sprite3);
+	this->attachComponent(renderer3);
+
 	Sprite* sprite2 = new Sprite();
 	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));
 	Vector2u textureSize2 = sprite2->getTexture()->getSize();
@@ -52,7 +62,7 @@ void MainMenu::initialize()
 	
 	UIButton* button1 = new UIButton("button_1", btnNormal, btnPressed);
 	this->attachChild(button1);
-	button1->setPosition((Game::WINDOW_WIDTH / 2) - 50, 500);
+	button1->setPosition((Game::WINDOW_WIDTH / 2) - 150, 500);
 	button1->getTransformable()->setScale(3.0f, 3.0f);
 	button1->setButtonListener(this);
 	
@@ -62,38 +72,24 @@ void MainMenu::initialize()
 	button_1Text->setSize(10);
 	button_1Text->setText("LEVEL 1");
 
-	/*
+
 	UIButton* button2 = new UIButton("button_2", btnNormal, btnPressed);
 	this->attachChild(button2);
-	button2->setPosition(150, 150);
-	button2->getTransformable()->setScale(0.3f, 0.3f);
+	button2->setPosition((Game::WINDOW_WIDTH / 2) + 100, 500);
+	button2->getTransformable()->setScale(3.0f, 3.0f);
 	button2->setButtonListener(this);
 
 	UIText* button_2Text = new UIText("text_2");
 	button2->attachChild(button_2Text);
-	button_2Text->setPosition(0, -20);
-	button_2Text->setSize(100);
-	button_2Text->setText("NO");
-	*/
+	button_2Text->setPosition(-110, -100);
+	button_2Text->setSize(10);
+	button_2Text->setText("Quit");
+
 }
 
 void MainMenu::onButtonClick(UIButton* button)
 {
 	
-
-	/*
-	//std::cout << button->getName();
-
-	if (button->getName() == "button_1")
-	{
-		exit(0);
-	}
-	if (button->getName() == "button_2")
-	{
-		GameObjectManager::getInstance()->deleteObjectByName("MainMenuScreen");
-		ApplicationManager::getInstance()->resumeApplication();
-	}
-	*/
 }
 
 void MainMenu::onButtonReleased(UIButton* button)
@@ -102,6 +98,11 @@ void MainMenu::onButtonReleased(UIButton* button)
 	{
 		SFXManager::getInstance()->getSFX("menuBGM")->stop();
 		SceneManager::getInstance()->loadScene(SceneManager::LEVEL1_SCENE_NAME);
+	}
+	if (button->getName() == "button_2")
+	{
+		SFXManager::getInstance()->getSFX("menuBGM")->stop();
+		ApplicationManager::getInstance()->applicationQuit();
 	}
 	//std::cout << button->getName();
 }

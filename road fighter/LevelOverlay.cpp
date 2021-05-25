@@ -9,8 +9,10 @@
 #include "SceneManager.h"
 #include "ScoreTextUpdater.h"
 #include "FuelTextUpdater.h"
+#include "SpeedTextUpdater.h"
 #include "SFXManager.h"
 #include <iostream>
+#include "QuitPopUp.h"
 
 LevelOverlay::LevelOverlay(string name) : GameObject(name), ButtonListener()
 {
@@ -24,36 +26,8 @@ LevelOverlay::~LevelOverlay()
 void LevelOverlay::initialize()
 {
 	SFXManager::getInstance()->play("levelBGM");
-	/*
-	Sprite* sprite2 = new Sprite();
-	sprite2->setTexture(*TextureManager::getInstance()->getTextureByKey("popUpGray"));
-	Vector2u textureSize2 = sprite2->getTexture()->getSize();
-	sprite2->setOrigin(textureSize2.x / 2, textureSize2.y / 2);
 
-	Renderer* renderer2 = new Renderer("popUp");
-	renderer2->assignDrawable(sprite2);
-	this->attachComponent(renderer2);
-	*/
 	this->setPosition(Game::WINDOW_WIDTH / 2, Game::WINDOW_HEIGHT / 2);
-
-
-	/*
-	Texture* btnNormal = TextureManager::getInstance()->getTextureByKey("buttonSpriteSheet");
-	Texture* btnPressed = TextureManager::getInstance()->getTextureByKey("buttonSpriteSheet");
-
-
-	UIButton* button1 = new UIButton("button_1", btnNormal, btnPressed);
-	this->attachChild(button1);
-	button1->setPosition(150, 500);
-	button1->getTransformable()->setScale(3.0f, 3.0f);
-	button1->setButtonListener(this);
-
-	UIText* button_1Text = new UIText("text_1");
-	button1->attachChild(button_1Text);
-	button_1Text->setPosition(-70, -80);
-	button_1Text->setSize(10);
-	button_1Text->setText("LEVEL 1");
-	*/
 
 	UIText* scoreText = new UIText("score_text");
 	GameObjectManager::getInstance()->addObject(scoreText);
@@ -71,8 +45,27 @@ void LevelOverlay::initialize()
 	fuelText->setSize(20);
 	fuelText->setText("FUEL \n" + (to_string)(this->fuel));
 
-	FuelTextUpdater* fuelTextUpdate = new FuelTextUpdater("score_text_updater");
+	FuelTextUpdater* fuelTextUpdate = new FuelTextUpdater("fuel_text_updater");
 	fuelText->attachComponent(fuelTextUpdate);
+
+
+	UIText* speedText = new UIText("speed_text");
+	GameObjectManager::getInstance()->addObject(speedText);
+	speedText->setPosition((Game::WINDOW_WIDTH / 2) + 300, (Game::WINDOW_HEIGHT / 2) + 175);
+	speedText->setSize(20);
+	speedText->setText("SPEED \n" + (to_string)(this->speed) + " KM/H");
+
+	SpeedTextUpdater* speedTextUpdate = new SpeedTextUpdater("speed_text_updater");
+	speedText->attachComponent(speedTextUpdate);
+
+	sf::Texture* btnNormal = TextureManager::getInstance()->getTextureByKey("buttonSpriteSheet");
+	sf::Texture* btnPressed = TextureManager::getInstance()->getTextureByKey("buttonSpriteSheet");
+
+	UIButton* button = new UIButton("button_1", btnNormal, btnPressed);
+	this->attachChild(button);
+	button->setPosition(475, 375);
+	button->getTransformable()->setScale(1.5, 1.5f);
+	button->setButtonListener(this);
 }
 
 
@@ -97,11 +90,13 @@ void LevelOverlay::onButtonClick(UIButton* button)
 
 void LevelOverlay::onButtonReleased(UIButton* button)
 {
-	/*
+	
 	if (button->getName() == "button_1")
 	{
-		SceneManager::getInstance()->loadScene(SceneManager::LEVEL1_SCENE_NAME);
+		ApplicationManager::getInstance()->pauseApplication();
+		QuitPopUp* quitpopUp = new QuitPopUp("quitPopUp");
+		GameObjectManager::getInstance()->addObject(quitpopUp);
 	}
-	*/
+	
 	//std::cout << button->getName();
 }

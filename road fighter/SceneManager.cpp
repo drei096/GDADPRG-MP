@@ -3,6 +3,8 @@
 
 string SceneManager::MAIN_MENU_SCENE_NAME = "MainMenuScene";
 string SceneManager::LEVEL1_SCENE_NAME = "Level1Scene";
+string SceneManager::LEVEL2_SCENE_NAME = "Level2Scene";
+string SceneManager::LEVEL3_SCENE_NAME = "Level3Scene";
 
 SceneManager* SceneManager::sharedInstance = NULL;
 

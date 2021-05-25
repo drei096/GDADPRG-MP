@@ -4,9 +4,10 @@
 #include "ApplicationManager.h"
 #include "GameObjectManager.h"
 #include "LevelOverScreen.h"
-BGMovement::BGMovement(string name, float _MAX) : ObjectComponent(name, Script)
+BGMovement::BGMovement(string name, float _MAX, int _level) : ObjectComponent(name, Script)
 {
 	this->MAX_DISTANCE = _MAX;
+	this->level = _level;
 }
 
 BGMovement::~BGMovement()
@@ -35,5 +36,78 @@ void BGMovement::perform()
 		ApplicationManager::getInstance()->pauseApplication();
 		LevelOverScreen* levelOverScreen = new LevelOverScreen("levelOverScreen");
 		GameObjectManager::getInstance()->addObject(levelOverScreen);
+	}
+}
+
+float BGMovement::laneCheck()
+{
+	if (this->left == false && this->leftMost == false && this->right == false && this->rightMost == false) {
+		return (65 / ((rand() % 2) + 1)) * (rand() % 2 > 0 ? -1 : 1);
+	}
+	else if (this->left == false && this->leftMost == false && this->right == true && this->rightMost == true) {
+		return (65 / ((rand() % 2) + 1) * -1);
+	}
+	else if (this->left == true && this->leftMost == true && this->right == false && this->rightMost == false) {
+		return (65 / ((rand() % 2) + 1));
+	}
+	else if (this->left == false && this->leftMost == true && this->right == true && this->rightMost == false) {
+		return (65 * (rand() % 2 > 0 ? -1 : 1));
+	}
+	else if (this->left == true && this->leftMost == false && this->right == false && this->rightMost == true) {
+		return (65 * (rand() % 2 > 0 ? -1 : 1));
+	}
+	else if (this->left == true && this->leftMost == false && this->right == true && this->rightMost == false) {
+		return ((rand() % 2 > 0 ? -65 : 32.5));
+	}
+	else if (this->left == false && this->leftMost == true && this->right == false && this->rightMost == true) {
+		return ((rand() % 2 > 0 ? 65 : -32.5));
+	}
+	else if (this->left == false && this->leftMost == true && this->right == true && this->rightMost == true) {
+		return -65;
+	}
+	else if (this->left == true && this->leftMost == false && this->right == true && this->rightMost == true) {
+		return -32.5;
+	}
+	else if (this->left == true && this->leftMost == true && this->right == false && this->rightMost == true) {
+		return 32.5;
+	}
+	else if (this->left == true && this->leftMost == true && this->right == true && this->rightMost == false) {
+		return 65;
+	}
+	else if (this->left == true && this->leftMost == false && this->right == false && this->rightMost == false) {
+		float random = rand() % 2;
+		if (random == 0) {
+			return -32.5;
+		}
+		else {
+			return (65 / ((rand() % 2) + 1));
+		}
+	}
+	else if (this->left == false && this->leftMost == true && this->right == false && this->rightMost == false) {
+		float random = rand() % 2;
+		if (random == 0) {
+			return -65;
+		}
+		else {
+			return (65 / ((rand() % 2) + 1));
+		}
+	}
+	else if (this->left == false && this->leftMost == false && this->right == true && this->rightMost == false) {
+		float random = rand() % 2;
+		if (random == 0) {
+			return 65;
+		}
+		else {
+			return (-65 / ((rand() % 2) + 1));
+		}
+	}
+	else if (this->left == false && this->leftMost == false && this->right == false && this->rightMost == true) {
+		float random = rand() % 2;
+		if (random == 0) {
+			return 32.5;
+		}
+		else {
+			return (-65 / ((rand() % 2) + 1));
+		}
 	}
 }

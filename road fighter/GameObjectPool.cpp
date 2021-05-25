@@ -80,7 +80,6 @@ void GameObjectPool::releasePoolable(ObjectPoolable* poolableObject)
 			break;
 		}
 	}
-
 	//std::cout << "Poolable index in used: " << index << "\n";
 	if (index > -1) {
 		this->usedObjects.erase(this->usedObjects.begin() + index);
@@ -95,6 +94,38 @@ void GameObjectPool::releasePoolableBatch(ObjectList objectList)
 	for (int i = 0; i < objectList.size(); i++) {
 		this->releasePoolable(objectList[i]);
 	}
+}
+
+void GameObjectPool::removeFromPool(ObjectPoolable* poolableObject)
+{
+	int index = -1;
+	for (int i = 0; i < this->usedObjects.size(); i++) {
+		if (this->usedObjects[i] == poolableObject) {
+			index = i;
+			break;
+		}
+	}
+
+	if (index > -1) {
+		cout << "Used" << endl;
+		this->usedObjects.erase(this->usedObjects.begin() + index);
+	}
+
+	if (index == -1) {
+		for (int i = 0; i < this->availableObjects.size(); i++) {
+			if (this->availableObjects[i] == poolableObject) {
+				index = i;
+				break;
+			}
+		}
+
+		if (index > -1) {
+			cout << "Available" << endl;
+			this->availableObjects.erase(this->availableObjects.begin() + index);
+		}
+	}
+
+	this->setEnabled(poolableObject, false);
 }
 
 string GameObjectPool::getTag()

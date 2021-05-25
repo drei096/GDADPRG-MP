@@ -11,6 +11,7 @@ public:
 	bool isFirstGear();
 	bool isLeft();
 	bool isRight();
+	bool Honk();
 
 private:
 	const float SPEED_MULTIPLIER = 300.0f;
@@ -18,5 +19,6 @@ private:
 	bool moveFirstGear = false;
 	bool moveLeft = false;
 	bool moveRight = false;
+	bool isHonk = false;
 };
 

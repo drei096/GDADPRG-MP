@@ -10,6 +10,8 @@
 #include "PhysicsManager.h"
 #include "SFXManager.h"
 #include "Level1PlayScene.h"
+#include "BGMovement.h"
+#include "GameObject.h"
 
 LevelOverScreen::LevelOverScreen(string name) : GameObject(name), ButtonListener()
 {
@@ -54,7 +56,7 @@ void LevelOverScreen::initialize()
 	button->attachChild(button_1Text);
 	button_1Text->setPosition(0, -80);
 	button_1Text->setSize(15);
-	button_1Text->setText("GO TO MAIN MENU");
+	button_1Text->setText("CONTINUE");
 
 	UIText* displayText = new UIText("displayText");
 	this->attachChild(displayText);
@@ -66,12 +68,25 @@ void LevelOverScreen::initialize()
 
 void LevelOverScreen::onButtonClick(UIButton* button)
 {
+	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
 }
 
 void LevelOverScreen::onButtonReleased(UIButton* button)
 {
-	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
-	SceneManager::getInstance()->unloadScene();
-	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
-	ApplicationManager::getInstance()->resumeApplication();
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
+	if (bgMove->level == 1) {
+		SceneManager::getInstance()->unloadScene();
+		SceneManager::getInstance()->loadScene(SceneManager::LEVEL2_SCENE_NAME);
+		ApplicationManager::getInstance()->resumeApplication();
+	}
+	else if (bgMove->level == 2) {
+		SceneManager::getInstance()->unloadScene();
+		SceneManager::getInstance()->loadScene(SceneManager::LEVEL3_SCENE_NAME);
+		ApplicationManager::getInstance()->resumeApplication();
+	}
+	else if (bgMove->level == 3) {
+		SceneManager::getInstance()->unloadScene();
+		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+		ApplicationManager::getInstance()->resumeApplication();
+	}
 }

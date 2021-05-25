@@ -1,11 +1,13 @@
 #include "Pothole.h"
 #include "TextureManager.h"
 #include "Game.h"
-#include "EnemyBehavior.h"
+#include "StationaryBehavior.h"
 #include <iostream>
 #include "Renderer.h"
 #include "Collider.h"
 #include "PhysicsManager.h"
+#include "BGMovement.h"
+#include "GameObjectManager.h"
 
 
 Pothole::Pothole(string name) : ObjectPoolable(name)
@@ -26,7 +28,7 @@ void Pothole::initialize()
 	sprite->setOrigin(64 / 2, 64 / 2);
 	sprite->setScale(0.4, 0.4);
 
-	this->setPosition((Game::WINDOW_WIDTH / 2) - 20, Game::WINDOW_HEIGHT * 5);
+	this->setPosition((Game::WINDOW_WIDTH / 2) - 20, -Game::WINDOW_HEIGHT * 50);
 	//randomize
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) , 0);
@@ -38,7 +40,7 @@ void Pothole::initialize()
 	this->attachComponent(renderer);
 
 
-	EnemyBehavior* behavior = new EnemyBehavior("PotholeBehavior", 400.0f);
+	StationaryBehavior* behavior = new StationaryBehavior("PotholeBehavior", 400.0f);
 	this->attachComponent(behavior);
 	//behavior->configure(1.0f);
 
@@ -50,7 +52,7 @@ void Pothole::initialize()
 
 void Pothole::onRelease()
 {
-	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("PotholeBehavior");
+	StationaryBehavior* behavior = (StationaryBehavior*)this->findComponentByName("PotholeBehavior");
 	behavior->reset();
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
@@ -61,12 +63,13 @@ void Pothole::onRelease()
 void Pothole::onActivate()
 {
 	//reset state
-	EnemyBehavior* behavior = (EnemyBehavior*)this->findComponentByName("PotholeBehavior");
+	StationaryBehavior* behavior = (StationaryBehavior*)this->findComponentByName("PotholeBehavior");
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 	behavior->reset();
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -30);
 	//randomize
-	int sign = rand() % 2;
-	this->getTransformable()->move((65 / ((rand() % (int)2.0) + 1.0)) , 0);
+	float posX = bgMove->laneCheck();
+	this->getTransformable()->move(posX, 0);
 }
 
 ObjectPoolable* Pothole::clone()

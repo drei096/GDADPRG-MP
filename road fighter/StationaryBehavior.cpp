@@ -8,6 +8,7 @@
 #include "GameObjectManager.h"
 #include "UIText.h"
 #include "LevelOverlay.h"
+#include "BGMovement.h"
 
 StationaryBehavior::StationaryBehavior(string name, float _MULTIPLIER) : ObjectComponent(name, Script)
 {
@@ -21,6 +22,7 @@ void StationaryBehavior::perform()
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
 	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
+	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
 	//this->movementType = Side;
 
@@ -34,10 +36,39 @@ void StationaryBehavior::perform()
 		std::cout << "Ticks greater! " << this->getOwner()->getName() << "\n";
 	}*/
 
+	if (transformable->getPosition().y > -400) {
+
+		if (transformable->getPosition().x < 317.5)
+		{
+			bgMove->leftMost = true;
+			this->position = LeftMost;
+		}
+		else if (transformable->getPosition().x >= 317.5 && transformable->getPosition().x < 350)
+		{
+			bgMove->left = true;
+			this->position = Left;
+
+		}
+		else if (transformable->getPosition().x <= 382.5 && transformable->getPosition().x > 350)
+		{
+			bgMove->right = true;
+			this->position = Right;
+
+		}
+		else if (transformable->getPosition().x > 382.5)
+		{
+			bgMove->rightMost = true;
+			this->position = RightMost;
+		}
+	}
+
 	if (this->movementType == Forward) {
 
-		if (inputController->isFirstGear() || inputController->isSecondGear())
+		if (inputController->isSecondGear())
 		{
+			if (transformable->getPosition().y > 0) {
+				this->isStart = true;
+			}
 			transformable->move(0, this->deltaTime.asSeconds() * SPEED_MULTIPLIER);
 		}
 		else
@@ -47,9 +78,30 @@ void StationaryBehavior::perform()
 
 		
 		//check if position is out of bounds, we can delete/return to pool
-		if (transformable->getPosition().y > Game::WINDOW_HEIGHT || transformable->getPosition().y < 0) {
-			GameObjectManager::getInstance()->deleteObject((GameObject*)this->getOwner());
+		if ((transformable->getPosition().y > Game::WINDOW_HEIGHT || transformable->getPosition().y < 0) && this->isStart) {
 
+			if (this->owner->getName() == "pothole") {
+				ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::POTHOLE_POOL_TAG)->releasePoolable((ObjectPoolable*)this->getOwner());
+				this->isStart = false;
+			}
+
+			if (this->position == LeftMost)
+			{
+				bgMove->leftMost = false;
+			}
+			else if (this->position == Left)
+			{
+				bgMove->left = false;
+			}
+			else if (this->position == Right)
+			{
+				bgMove->right = false;
+
+			}
+			else if (this->position == RightMost)
+			{
+				bgMove->rightMost = false;
+			}
 		}
 		
 

@@ -9,9 +9,9 @@
 
 FuelCarClone::FuelCarClone(int numEnemies, string name) : ObjectComponent(name, Script)
 {
-	GameObjectPool* enemyFuelPool = new GameObjectPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG, new FuelCar("enemyFuel"), numEnemies, NULL);
-	enemyFuelPool->initialize();
-	ObjectPoolHolder::getInstance()->registerObjectPool(enemyFuelPool);
+	GameObjectPool* enemyYellowPool = new GameObjectPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG, new FuelCar("enemyFuel"), numEnemies, NULL);
+	enemyYellowPool->initialize();
+	ObjectPoolHolder::getInstance()->registerObjectPool(enemyYellowPool);
 }
 
 FuelCarClone::~FuelCarClone()
@@ -24,14 +24,14 @@ void FuelCarClone::perform()
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
-	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100) * 25)
+	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100))
 	{
-		GameObjectPool* enemyFuelPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG);
+		GameObjectPool* fuelPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG);
 		this->ticks += this->deltaTime.asSeconds();
 
 		if (this->ticks > SPAWN_INTERVAL) {
 			this->ticks = 0.0f;
-			enemyFuelPool->requestPoolable();
+			fuelPool->requestPoolable();
 
 		}
 	}

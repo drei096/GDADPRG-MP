@@ -11,6 +11,8 @@
 #include "MainMenuScene.h"
 #include "SFXManager.h"
 #include "Level1PlayScene.h"
+#include "Level2PlayScene.h"
+#include "Level3PlayScene.h"
 
 
 Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road Fighter")
@@ -25,6 +27,8 @@ Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road 
     SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 
     SceneManager::getInstance()->registerScene(new Level1PlayScene());
+    SceneManager::getInstance()->registerScene(new Level2PlayScene());
+    SceneManager::getInstance()->registerScene(new Level3PlayScene());
     
     //PlayerCar* player = new PlayerCar("player");
     //GameObjectManager::getInstance()->addObject(player);
