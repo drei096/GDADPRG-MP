@@ -21,6 +21,7 @@ void BGMovement::perform()
 	sf::Vector2f offset(0.0f, 0.0f);
 	offset.y += SPEED_MULTIPLIER;
 	this->getOwner()->getTransformable()->move(offset * deltaTime.asSeconds());
+	//computes for the total distance travelled by adding the amount of movement of the background
 	this->totalDistanceTravelled += offset.y * deltaTime.asSeconds();
 	//cout << this->totalDistanceTravelled << endl;
 
@@ -29,9 +30,9 @@ void BGMovement::perform()
 	if (localPos.y * deltaTime.asSeconds() > 0) {
 		//reset position
 		this->getOwner()->getTransformable()->setPosition(100, -Game::WINDOW_HEIGHT * 8);
-		//ApplicationManager::getInstance()->pauseApplication();
 	}
 
+	//checker if the total distance travalled is equal to the max distance passed
 	if (this->totalDistanceTravelled >= this->MAX_DISTANCE) {
 		ApplicationManager::getInstance()->pauseApplication();
 		LevelOverScreen* levelOverScreen = new LevelOverScreen("levelOverScreen");
@@ -39,6 +40,7 @@ void BGMovement::perform()
 	}
 }
 
+//Basically a function to check if the lane is already occupied
 float BGMovement::laneCheck()
 {
 	if (this->left == false && this->leftMost == false && this->right == false && this->rightMost == false) {

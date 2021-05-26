@@ -23,46 +23,22 @@ void ScoreTextUpdater::perform()
 {
 	UIText* textScore = (UIText*)GameObjectManager::getInstance()->findObjectByName("score_text");
 	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
-	ProgressBar* carProgress = (ProgressBar*)GameObjectManager::getInstance()->findObjectByName("progressBar");
 	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
 
-	if (textScore == NULL || levelOverlay == NULL || carProgress == NULL)
+	if (textScore == NULL || levelOverlay == NULL || player == NULL)
 	{
 		cout << "One or more of the needed dependencies are missing!\n";
 		return;
 	}
 
-	//cout << collisionCount << endl;
-	//cout << carProgress->laps << endl;
+	//for mula for computing score is passed car multiplied by 50 + bonus car taken multiplied by 1000
+	levelOverlay->score = (player->passedCar * 50) + (player->bonus * 1000);
 
-	/*
-	if (player->getTransformable()->getPosition().y < redCar->getTransformable()->getPosition().y)
-	{
-		levelOverlay->score += 50;
-	}
-	*/
-
-	//int laps = carProgress->laps;
-
-	//levelOverlay->score = (laps - 1) * 50;
-	levelOverlay->score = (player->passedCar * 50) - (player->totalEnemies * 50) + (player->bonus * 1000);
-
+	//avoiding negative scoring
 	if (levelOverlay->score <= 0)
 		levelOverlay->score = 0;
 
-	/*
-	if (player->hasPassedACar == true)
-	{
-		levelOverlay->score += 50;
-		player->hasPassedACar = false;
-	}
-	else
-	{
-		levelOverlay->score += 0;
-	}
-	*/
-
-
+	//text score update
 	textScore->setText("SCORE\n" + (to_string)(levelOverlay->score));
 
 }

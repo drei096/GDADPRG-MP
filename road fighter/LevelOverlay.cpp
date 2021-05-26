@@ -72,20 +72,6 @@ void LevelOverlay::initialize()
 void LevelOverlay::onButtonClick(UIButton* button)
 {
 
-
-	/*
-	//std::cout << button->getName();
-
-	if (button->getName() == "button_1")
-	{
-		exit(0);
-	}
-	if (button->getName() == "button_2")
-	{
-		GameObjectManager::getInstance()->deleteObjectByName("LevelOverlayScreen");
-		ApplicationManager::getInstance()->resumeApplication();
-	}
-	*/
 }
 
 void LevelOverlay::onButtonReleased(UIButton* button)
@@ -98,5 +84,4 @@ void LevelOverlay::onButtonReleased(UIButton* button)
 		GameObjectManager::getInstance()->addObject(quitpopUp);
 	}
 	
-	//std::cout << button->getName();
 }

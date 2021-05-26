@@ -68,25 +68,31 @@ void LevelOverScreen::initialize()
 
 void LevelOverScreen::onButtonClick(UIButton* button)
 {
-	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
+	SFXManager::getInstance()->getSFX("level_endBGM")->stop();
 }
 
 void LevelOverScreen::onButtonReleased(UIButton* button)
 {
-	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
-	if (bgMove->level == 1) {
-		SceneManager::getInstance()->unloadScene();
-		SceneManager::getInstance()->loadScene(SceneManager::LEVEL2_SCENE_NAME);
-		ApplicationManager::getInstance()->resumeApplication();
+	if (button->getName() == "button_1") {
+		BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
+		//if level is 1, load next level
+		if (bgMove->level == 1) {
+			SceneManager::getInstance()->unloadScene();
+			SceneManager::getInstance()->loadScene(SceneManager::LEVEL2_SCENE_NAME);
+			ApplicationManager::getInstance()->resumeApplication();
+		}
+		//if level is 2, load next level
+		else if (bgMove->level == 2) {
+			SceneManager::getInstance()->unloadScene();
+			SceneManager::getInstance()->loadScene(SceneManager::LEVEL3_SCENE_NAME);
+			ApplicationManager::getInstance()->resumeApplication();
+		}
+		//if level is 3, return to menu
+		else if (bgMove->level == 3) {
+			SceneManager::getInstance()->unloadScene();
+			SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+			ApplicationManager::getInstance()->resumeApplication();
+		}
 	}
-	else if (bgMove->level == 2) {
-		SceneManager::getInstance()->unloadScene();
-		SceneManager::getInstance()->loadScene(SceneManager::LEVEL3_SCENE_NAME);
-		ApplicationManager::getInstance()->resumeApplication();
-	}
-	else if (bgMove->level == 3) {
-		SceneManager::getInstance()->unloadScene();
-		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
-		ApplicationManager::getInstance()->resumeApplication();
-	}
+	
 }

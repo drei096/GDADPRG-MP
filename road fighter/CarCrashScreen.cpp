@@ -73,7 +73,7 @@ void CarCrashScreen::onButtonClick(UIButton* button)
 
 void CarCrashScreen::onButtonReleased(UIButton* button)
 {
-	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
+	SFXManager::getInstance()->getSFX("loss")->stop();
 	SceneManager::getInstance()->unloadScene();
 	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
 	ApplicationManager::getInstance()->resumeApplication();

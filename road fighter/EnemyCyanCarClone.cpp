@@ -25,7 +25,8 @@ void EnemyCyanCarClone::perform()
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
-	if ((inputController->isFirstGear() || inputController->isSecondGear()) && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100) * 5)
+	//second to appear in the map along with yellow car and instantiated only when player is moving
+	if ((inputController->isSecondGear()) && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100) * 5)
 	{
 		GameObjectPool* enemyCyanPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CYAN_CAR_POOL_TAG);
 		this->ticks += this->deltaTime.asSeconds();

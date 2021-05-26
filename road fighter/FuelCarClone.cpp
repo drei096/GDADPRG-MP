@@ -24,6 +24,7 @@ void FuelCarClone::perform()
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
+	//first to appear in the map but spawn interval is long so it still might take a while for it to spawn and instantiated only when player is moving
 	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100))
 	{
 		GameObjectPool* fuelPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_FUEL_POOL_TAG);

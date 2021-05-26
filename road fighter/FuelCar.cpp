@@ -30,10 +30,9 @@ void FuelCar::initialize()
 	sprite->setScale(0.12, 0.12);
 
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -Game::WINDOW_HEIGHT * 50);
-	//randomize
+	//randomize position
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
-	//this->getTransformable()->setRotation(180); //must face towards player
 
 
 	Renderer* renderer = new Renderer("EnemyFuelSprite");

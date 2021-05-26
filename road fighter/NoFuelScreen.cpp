@@ -70,8 +70,10 @@ void NoFuelScreen::onButtonClick(UIButton* button)
 
 void NoFuelScreen::onButtonReleased(UIButton* button)
 {
-	SFXManager::getInstance()->getSFX("gameOverBGM")->stop();
-	SceneManager::getInstance()->unloadScene();
-	SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
-	ApplicationManager::getInstance()->resumeApplication();
+	if (button->getName() == "button_1") {
+		SFXManager::getInstance()->getSFX("loss")->stop();
+		SceneManager::getInstance()->unloadScene();
+		SceneManager::getInstance()->loadScene(SceneManager::MAIN_MENU_SCENE_NAME);
+		ApplicationManager::getInstance()->resumeApplication();
+	}
 }

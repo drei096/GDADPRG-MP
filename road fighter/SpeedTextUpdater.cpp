@@ -24,17 +24,18 @@ void SpeedTextUpdater::perform()
 {
 	UIText* textSpeed = (UIText*)GameObjectManager::getInstance()->findObjectByName("speed_text");
 	LevelOverlay* levelOverlay = (LevelOverlay*)GameObjectManager::getInstance()->findObjectByName("levelOverlay");
-	ProgressBar* carProgress = (ProgressBar*)GameObjectManager::getInstance()->findObjectByName("progressBar");
-	PlayerCar* player = (PlayerCar*)GameObjectManager::getInstance()->findObjectByName("player");
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
-	if (textSpeed == NULL || levelOverlay == NULL || carProgress == NULL)
+	if (textSpeed == NULL || levelOverlay == NULL)
 	{
 		cout << "One or more of the needed dependencies are missing!\n";
 		return;
 	}
 
+	//formula for getting speed is current multiplier of bg move divided by 2.5
 	levelOverlay->speed = bgMove->SPEED_MULTIPLIER / 2.5;
+
+	//speed text update
 	textSpeed->setText("SPEED \n" + (to_string)(levelOverlay->speed) + " KM/H");
 
 }

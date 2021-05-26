@@ -25,6 +25,7 @@ void EnemyCarClone::perform()
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
+	//first to appear in the map and instantiated only when player is moving
 	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > bgMove->MAX_DISTANCE / 100)
 	{
 		GameObjectPool* enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_CAR_POOL_TAG);

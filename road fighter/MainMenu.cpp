@@ -104,6 +104,5 @@ void MainMenu::onButtonReleased(UIButton* button)
 		SFXManager::getInstance()->getSFX("menuBGM")->stop();
 		ApplicationManager::getInstance()->applicationQuit();
 	}
-	//std::cout << button->getName();
 }
 

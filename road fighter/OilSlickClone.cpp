@@ -24,6 +24,7 @@ void OilSlickClone::perform()
 	PlayerInputController* inputController = (PlayerInputController*)player->getComponentsOfType(componentType::Input)[0];
 	BGMovement* bgMove = (BGMovement*)GameObjectManager::getInstance()->findObjectByName("BG")->findComponentByName("BG_Movement");
 
+	//fourth to appear in the map and instantiated only when player is moving
 	if (inputController->isSecondGear() && bgMove->totalDistanceTravelled > (bgMove->MAX_DISTANCE / 100) * 10)
 	{
 		GameObjectPool* oilPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::OIL_POOL_TAG);

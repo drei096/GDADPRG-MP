@@ -39,15 +39,6 @@ void ProgressBar::initialize()
 	renderer->assignDrawable(sprite);
 	this->attachComponent(renderer);
 
-	/*
-	Sprite* car = new Sprite();
-	car->setTexture(*TextureManager::getInstance()->getTextureByKey("player"));
-	Vector2u carSize = car->getTexture()->getSize();
-	car->setOrigin(carSize.x / 2, carSize.y / 2);
-	car->setScale(2.25f, 0.5f);
-	car->setPosition(250, 0);
-	car->setRotation(-90);
-	*/
 
 }
 
@@ -58,5 +49,5 @@ void ProgressBar::onButtonClick(UIButton* button)
 
 void ProgressBar::onButtonReleased(UIButton* button)
 {
-	GameObjectManager::getInstance()->deleteObject(this);
+
 }

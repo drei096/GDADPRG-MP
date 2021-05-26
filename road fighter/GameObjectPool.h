@@ -16,7 +16,6 @@ public:
 
 	void releasePoolable(ObjectPoolable* poolableObject);
 	void releasePoolableBatch(ObjectList objectList);
-	void removeFromPool(ObjectPoolable* poolableObject);
 
 	string getTag();
 

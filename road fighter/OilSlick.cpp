@@ -25,7 +25,7 @@ void OilSlick::initialize()
 	sprite->setScale(0.05, 0.05);
 
 	this->setPosition((Game::WINDOW_WIDTH / 2) - 25, -Game::WINDOW_HEIGHT * 50);
-	//randomize
+	//randomize position
 	int sign = rand() % 2;
 	this->getTransformable()->move((65 / ((rand() % 2) + 1)) * ((sign > 0) ? -1 : 1), 0);
 
@@ -37,7 +37,6 @@ void OilSlick::initialize()
 
 	StationaryBehavior* behavior = new StationaryBehavior("OilBehavior", 400.0f);
 	this->attachComponent(behavior);
-	//behavior->configure(1.0f);
 
 	Collider* collide = new Collider("OilCollide", sprite, Collider::ObjectType::EnemyCar);
 	this->attachComponent(collide);

@@ -75,9 +75,6 @@ void Level3PlayScene::onLoadObjects()
 	truckEnemiesManager->attachComponent(TSwarmHandler);
 	this->registerObject(truckEnemiesManager);
 
-	PlayerCar* player = new PlayerCar("player", 0);
-	this->registerObject(player);
-
 	EmptyGameObject* fuelEnemiesManager = new EmptyGameObject("fuelEnemiesManager");
 	FuelCarClone* FSwarmHandler = new FuelCarClone(10, "FSwarmHandler");
 	fuelEnemiesManager->attachComponent(FSwarmHandler);
@@ -93,6 +90,9 @@ void Level3PlayScene::onLoadObjects()
 	oilManager->attachComponent(OSwarmHandler);
 	this->registerObject(oilManager);
 
+	//player car instantiated last to be on top of drawables
+	PlayerCar* player = new PlayerCar("player", 0);
+	this->registerObject(player);
 
 	PhysicsManager::initialize("PlayerP6", player);
 }
