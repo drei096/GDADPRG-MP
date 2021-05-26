@@ -51,11 +51,6 @@ void PlayerMovement::perform()
 	//if W is pressed
 	if (inputController->isSecondGear()) 
 	{
-		//car honk
-		if (inputController->Honk()) {
-			SFXManager::getInstance()->getSFX("horn")->play();
-		}
-
 		bgMove->SPEED_MULTIPLIER += this->SPEED_MULTIPLIER * deltaTime.asSeconds();
 
 		//speed multiplier of bgmove can't go more than 1000
@@ -115,11 +110,6 @@ void PlayerMovement::perform()
 	//if W is not pressed
 	else if (!inputController->isSecondGear())
 	{
-		//car honk
-		if (inputController->Honk()) {
-			SFXManager::getInstance()->getSFX("honk")->play();
-		}
-
 		//bgmove slows done 2x faster
 		bgMove->SPEED_MULTIPLIER -= this->SPEED_MULTIPLIER * deltaTime.asSeconds() * 2;
 
@@ -131,9 +121,6 @@ void PlayerMovement::perform()
 		if (bgMove->SPEED_MULTIPLIER <= 0.0f) {
 			bgMove->SPEED_MULTIPLIER = 0.0f;
 		}
-
-
-		cout << bgMove->SPEED_MULTIPLIER << endl;
 
 		if (inputController->isRight())
 		{

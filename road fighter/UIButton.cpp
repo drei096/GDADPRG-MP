@@ -78,11 +78,6 @@ sf::FloatRect UIButton::getGlobalBounds() {
 
 	bounds = transform.transformRect(bounds);
 
-	// Debug for bound values
-	std::cout << endl;
-	std::cout << this->name << endl;
-	std::cout << bounds.left << " : " << bounds.width << endl;
-	std::cout << bounds.top << " : " << bounds.height << endl;
 	return bounds;
 
 }

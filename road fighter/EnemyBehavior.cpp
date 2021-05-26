@@ -31,6 +31,15 @@ void EnemyBehavior::perform()
 	this->ticks += this->deltaTime.asSeconds();
 	sf::Transformable* transformable = this->getOwner()->getTransformable();
 
+	//if it goes out of bounds on right side
+	if (transformable->getPosition().x >= ((Game::WINDOW_WIDTH / 2) + 40)) {
+		transformable->setPosition((Game::WINDOW_WIDTH / 2) + 40, transformable->getPosition().y);
+	}
+	//if it goes out of bounds on left side
+	if (transformable->getPosition().x <= ((Game::WINDOW_WIDTH / 2) - 90)) {
+		transformable->setPosition((Game::WINDOW_WIDTH / 2) - 90, transformable->getPosition().y);
+	}
+
 	//bool check the position of the instantiated car
 	if (transformable->getPosition().y > -400) {
 
