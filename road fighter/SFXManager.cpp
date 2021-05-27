@@ -62,3 +62,8 @@ void SFXManager::setVolume(string key, int volume)
 {
 	SFXManager::getInstance()->getSFX(key)->setVolume(volume);
 }
+
+void SFXManager::deleteAllSFX()
+{
+	this->SFXMap.clear();
+}

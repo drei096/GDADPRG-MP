@@ -15,7 +15,7 @@
 #include "Level3PlayScene.h"
 
 
-Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road Fighter")
+Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Philippines Traffic Simulator")
 {
     TextureManager::getInstance()->loadAllTextures();
     FontManager::getInstance()->loadAll();
@@ -30,8 +30,6 @@ Game::Game() : window(VideoMode(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT), "Road 
     SceneManager::getInstance()->registerScene(new Level2PlayScene());
     SceneManager::getInstance()->registerScene(new Level3PlayScene());
     
-    //PlayerCar* player = new PlayerCar("player");
-    //GameObjectManager::getInstance()->addObject(player);
 };
 
 
@@ -65,6 +63,8 @@ void Game::processEvents() {
 
         switch (event.type) {
         case Event::Closed:
+            SFXManager::getInstance()->deleteAllSFX();
+            SceneManager::getInstance()->unloadScene();
             window.close();
             break;
         default:

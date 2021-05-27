@@ -15,6 +15,8 @@ public:
     void play(string key);
     void setVolume(string key, int volume);
 
+    void deleteAllSFX();
+
 private:
     SFXManager() {};
     SFXManager(SFXManager const&) {};

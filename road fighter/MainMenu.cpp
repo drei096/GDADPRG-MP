@@ -102,6 +102,8 @@ void MainMenu::onButtonReleased(UIButton* button)
 	if (button->getName() == "button_2")
 	{
 		SFXManager::getInstance()->getSFX("menuBGM")->stop();
+		SceneManager::getInstance()->unloadScene();
+		SFXManager::getInstance()->deleteAllSFX();
 		ApplicationManager::getInstance()->applicationQuit();
 	}
 }
